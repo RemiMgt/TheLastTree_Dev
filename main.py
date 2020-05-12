@@ -4,12 +4,27 @@ from pygame.locals import *
 from random import *
 
 from image import *
+from fonction import *
 from game import Game
 import sys
 
 pygame.init()
 
 game = Game()
+
+#Titre jeux :
+texte_titre1 = arial_font_grand.render("T", True, white)
+texte_titre2 = arial_font.render("he Last Tree", True, white
+)
+
+#Musiques :
+musique_menu = pygame.mixer.Sound("assets/musique_menu.ogg")
+musique_menu.play()
+
+#Création de la fenetre :
+pygame.display.set_caption("The Last Tree")
+fenetre = pygame.display.set_mode((L,H))
+pygame.display.set_icon(icon)
 
 #Couleurs :
 white = (255, 255, 255)
@@ -104,19 +119,6 @@ rectBouton_retour_help_option = bouton_retour_help_option.get_rect()
 rectBouton_retour_help_option.x = -64
 rectBouton_retour_help_option.y = 580
 
-#Titre jeux :
-texte_titre1 = arial_font_grand.render("T", True, white)
-texte_titre2 = arial_font.render("he Last Tree", True, white
-)
-
-#Musiques :
-musique_menu = pygame.mixer.Sound("assets/musique_menu.ogg")
-musique_menu.play()
-
-#Création de la fenetre :
-pygame.display.set_caption("The Last Tree")
-fenetre = pygame.display.set_mode((L,H))
-pygame.display.set_icon(icon)
 
 #Fonction du menu:
 def menu() :
