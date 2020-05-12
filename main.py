@@ -2,9 +2,11 @@
 import pygame
 from pygame.locals import *
 from random import *
+
 from image import *
 from game import Game
 import sys
+
 pygame.init()
 
 game = Game()
@@ -42,15 +44,6 @@ texte_credits_nom_creator = arial_font_petit_credits.render("Rémi L'AIL", True,
 texte_credits_nom_designer = arial_font_petit_credits.render("Damien ", True, noir)
 texte_credits_damien = arial_font_credits.render("Game designer :", True, noir)
 texte_credits = arial_font_brouillon.render("Credits : ", True, red)
-
-#Titre jeux :
-texte_titre1 = arial_font_grand.render("T", True, white)
-texte_titre2 = arial_font.render("he Last Tree", True, white
-)
-
-#Musiques :
-musique_menu = pygame.mixer.Sound("assets/musique_menu.ogg")
-musique_menu.play()
 
 #Rect :
 rectBouton_play = bouton_play.get_rect()
@@ -111,13 +104,19 @@ rectBouton_retour_help_option = bouton_retour_help_option.get_rect()
 rectBouton_retour_help_option.x = -64
 rectBouton_retour_help_option.y = 580
 
+#Titre jeux :
+texte_titre1 = arial_font_grand.render("T", True, white)
+texte_titre2 = arial_font.render("he Last Tree", True, white
+)
+
+#Musiques :
+musique_menu = pygame.mixer.Sound("assets/musique_menu.ogg")
+musique_menu.play()
+
 #Création de la fenetre :
 pygame.display.set_caption("The Last Tree")
 fenetre = pygame.display.set_mode((L,H))
 pygame.display.set_icon(icon)
-
-#Fps :
-#clock = pygame.time.Clock(60)
 
 #Fonction du menu:
 def menu() :
@@ -246,6 +245,10 @@ def exit_game() :
     boucle = False
     pygame.quit()
     sys.exit()
+
+
+#Fps :
+#clock = pygame.time.Clock(60)
 
 #Boucle de jeux :
 boucle = True
