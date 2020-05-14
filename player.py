@@ -15,7 +15,7 @@ class Player(pygame.sprite.Sprite) :
     def __init__(self, game) :
         super().__init__()
         self.image = pygame.image.load("sprite/rien_bas.png")
-        self.image = pygame.transform.scale(self.image, (120, 150))
+        self.image = pygame.transform.scale(self.image, (100, 100))
         self.rect = self.image.get_rect()
         self.game = game
         self.rect.x = 740
