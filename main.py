@@ -4,27 +4,12 @@ from pygame.locals import *
 from random import *
 
 from image import *
-from fonction import *
 from game import Game
 import sys
 
 pygame.init()
 
 game = Game()
-
-#Titre jeux :
-texte_titre1 = arial_font_grand.render("T", True, white)
-texte_titre2 = arial_font.render("he Last Tree", True, white
-)
-
-#Musiques :
-musique_menu = pygame.mixer.Sound("assets/musique_menu.ogg")
-musique_menu.play()
-
-#Création de la fenetre :
-pygame.display.set_caption("The Last Tree")
-fenetre = pygame.display.set_mode((L,H))
-pygame.display.set_icon(icon)
 
 #Couleurs :
 white = (255, 255, 255)
@@ -41,9 +26,24 @@ arial_font_grand = pygame.font.SysFont("arial", 300, True, False)
 arial_font_petit = pygame.font.SysFont("arial", 38, True, False)
 arial_font_moyen = pygame.font.SysFont("arial", 60, True, False)
 arial_font_moyen_moins = pygame.font.SysFont("arial", 55, True, False)
-arial_font_credits = pygame.font.SysFont("arial", 20, True, False)
+arial_font_credits = pygame.font.SysFont("arial", 25, True, False)
 arial_font_petit_credits = pygame.font.SysFont("arial", 30, False, True)
 arial_font_brouillon = pygame.font.SysFont("arial", 85, True, False)
+
+#Titre jeux :
+texte_titre1 = arial_font_grand.render("T", True, white)
+texte_titre2 = arial_font.render("he Last Tree", True, white
+)
+
+#Musiques :
+musique_menu = pygame.mixer.Sound("assets/musique_menu.ogg")
+#musique_menu.play()
+
+#Création de la fenetre :
+pygame.display.set_caption("The Last Tree")
+fenetre = pygame.display.set_mode((L,H))
+pygame.display.set_icon(icon)
+
 
 #textes :
 texte_play = arial_font.render("Play", True, marron)
@@ -204,10 +204,10 @@ def option() :
     fenetre.blit(texte_show, rectTexte_show)
     fenetre.blit(texte_credits, (1130, 100))
     fenetre.blit(rond_credits, (900, 180))
-    fenetre.blit(texte_credits_remi, (1140, 350))
-    fenetre.blit(texte_credits_nom_creator, (1170, 420))
-    fenetre.blit(texte_credits_damien, (1170, 500))
-    fenetre.blit(texte_credits_nom_designer, (1192, 570))
+    fenetre.blit(texte_credits_remi, (1110, 370))
+    fenetre.blit(texte_credits_nom_creator, (1170, 440))
+    fenetre.blit(texte_credits_damien, (1150, 520))
+    fenetre.blit(texte_credits_nom_designer, (1192, 590))
 
 def commands() :
     x, y = pygame.mouse.get_pos()
@@ -257,19 +257,19 @@ boucle = True
 while boucle == True :
     x, y = pygame.mouse.get_pos()
 
-    if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" :
-        #Player :
-        fenetre.blit(game.player.image, game.player.rect)
-        #Déplacements player :
-        if game.pressed.get(pygame.K_z) == True :
-            print("Haut")
-            game.player.move_haut()
-        if game.pressed.get(pygame.K_s) == True :
-            game.player.move_bas()
-        if game.pressed.get(pygame.K_d) == True :
-            game.player.move_droite()
-        if game.pressed.get(pygame.K_q) == True :
-            game.player.move_gauche()
+    #if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" :
+    #Player :
+    fenetre.blit(game.player.image, game.player.rect)
+    #Déplacements player :
+    if game.pressed.get(pygame.K_z) == True :
+        print("Haut")
+        game.player.move_haut()
+    if game.pressed.get(pygame.K_s) == True :
+        game.player.move_bas()
+    if game.pressed.get(pygame.K_d) == True :
+        game.player.move_droite()
+    if game.pressed.get(pygame.K_q) == True :
+        game.player.move_gauche()
 
     if stat == "menu" :
         menu()
