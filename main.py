@@ -16,13 +16,14 @@ white = (255, 255, 255)
 red = (255, 0, 0)
 noir = (0, 0, 0)
 marron = (98, 55, 26)
+vert_titre = (12, 50, 2)
 
 #Variables :
 L = 1600
 H = 900
 stat = "menu"
 arial_font = pygame.font.SysFont("arial", 70, True, False)
-arial_font_grand = pygame.font.SysFont("arial", 300, True, False)
+arial_font_grand = pygame.font.SysFont("arial", 260, True, False)
 arial_font_petit = pygame.font.SysFont("arial", 38, True, False)
 arial_font_moyen = pygame.font.SysFont("arial", 60, True, False)
 arial_font_moyen_moins = pygame.font.SysFont("arial", 55, True, False)
@@ -31,9 +32,8 @@ arial_font_petit_credits = pygame.font.SysFont("arial", 30, False, True)
 arial_font_brouillon = pygame.font.SysFont("arial", 85, True, False)
 
 #Titre jeux :
-texte_titre1 = arial_font_grand.render("T", True, white)
-texte_titre2 = arial_font.render("he Last Tree", True, white
-)
+texte_titre1 = arial_font_grand.render("T", True, vert_titre)
+texte_titre2 = arial_font.render("he Last Tree", True, vert_titre)
 
 #Musiques :
 musique_menu = pygame.mixer.Sound("assets/musique_menu.ogg")
@@ -119,6 +119,19 @@ rectBouton_retour_help_option = bouton_retour_help_option.get_rect()
 rectBouton_retour_help_option.x = -64
 rectBouton_retour_help_option.y = 580
 
+rectBouton_niveau1 = bouton_niveau1.get_rect()
+rectBouton_niveau1.x = 60
+rectBouton_niveau1.y = 100
+rectBouton_niveau2 = bouton_niveau2.get_rect()
+rectBouton_niveau2.x = 597
+rectBouton_niveau2.y = 100
+rectBouton_niveau3 = bouton_niveau3.get_rect()
+rectBouton_niveau3.x = 1130
+rectBouton_niveau3.y = 100
+rectBouton_infinity = bouton_infinity.get_rect()
+rectBouton_infinity.x = 597
+rectBouton_infinity.y = 400
+
 
 #Fonction du menu:
 def menu() :
@@ -169,6 +182,10 @@ def jeux() :
     fenetre.blit(game.player.image, game.player.rect)
     fenetre.blit(bouton_retour_menu, rectBouton_retour_menu)
     fenetre.blit(texte_retour_menu, rectTexte_retour_menu)
+    fenetre.blit(bouton_niveau1, rectBouton_niveau1)
+    fenetre.blit(bouton_niveau2, rectBouton_niveau2)
+    fenetre.blit(bouton_niveau3, rectBouton_niveau3)
+    fenetre.blit(bouton_infinity, rectBouton_infinity)
 
     if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
         rectBouton_retour_menu.x = -39
@@ -188,6 +205,9 @@ def niveau2() :
     pass
 
 def niveau3() :
+    pass
+
+def infinity() :
     pass
 
 def option() :
@@ -285,6 +305,9 @@ while boucle == True :
 
     if stat == "niveau3" :
         niveau3()
+
+    if stat == "infinity" :
+        infinity()
 
     if stat == "option" :
         option()
