@@ -178,8 +178,7 @@ def menu() :
         rectTexte_exit.y = 660
 
 def jeux() :
-    fenetre.blit(game.map.image, game.map.rect)
-    fenetre.blit(game.player.image, game.player.rect)
+    fenetre.blit(fond_ecran_niveau, (0, 0))
     fenetre.blit(bouton_retour_menu, rectBouton_retour_menu)
     fenetre.blit(texte_retour_menu, rectTexte_retour_menu)
     fenetre.blit(bouton_niveau1, rectBouton_niveau1)
