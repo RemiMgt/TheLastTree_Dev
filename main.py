@@ -17,6 +17,7 @@ red = (255, 0, 0)
 noir = (0, 0, 0)
 marron = (98, 55, 26)
 vert_titre = (12, 50, 2)
+orange = (187, 109, 28)
 
 #Variables :
 L = 1600
@@ -30,6 +31,7 @@ arial_font_moyen_moins = pygame.font.SysFont("arial", 55, True, False)
 arial_font_credits = pygame.font.SysFont("arial", 25, True, False)
 arial_font_petit_credits = pygame.font.SysFont("arial", 30, False, True)
 arial_font_brouillon = pygame.font.SysFont("arial", 85, True, False)
+arial_font_niveau = pygame.font.SysFont("arial", 60, True, False)
 
 #Titre jeux :
 texte_titre1 = arial_font_grand.render("T", True, vert_titre)
@@ -59,6 +61,10 @@ texte_credits_nom_creator = arial_font_petit_credits.render("Rémi L'AIL", True,
 texte_credits_nom_designer = arial_font_petit_credits.render("Damien ", True, noir)
 texte_credits_damien = arial_font_credits.render("Game designer :", True, noir)
 texte_credits = arial_font_brouillon.render("Credits : ", True, red)
+texte_niveau1 = arial_font_niveau.render("Niveau1", True, orange)
+texte_niveau2 = arial_font_niveau.render("Niveau2", True, orange)
+texte_niveau3 = arial_font_niveau.render("Niveau3", True, orange)
+texte_infini = arial_font_niveau.render("Infini", True, orange)
 
 #Rect :
 rectBouton_play = bouton_play.get_rect()
@@ -185,6 +191,10 @@ def jeux() :
     fenetre.blit(bouton_niveau2, rectBouton_niveau2)
     fenetre.blit(bouton_niveau3, rectBouton_niveau3)
     fenetre.blit(bouton_infinity, rectBouton_infinity)
+    fenetre.blit(texte_niveau1, (140, 160))
+    fenetre.blit(texte_niveau2, (675, 160))
+    fenetre.blit(texte_niveau3, (1210, 160))
+    fenetre.blit(texte_infini, (720, 460))
 
     if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
         rectBouton_retour_menu.x = -39
