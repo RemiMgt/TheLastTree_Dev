@@ -57,10 +57,10 @@ texte_retour_option = arial_font_petit.render("Retour", True, marron)
 texte_tap = arial_font_moyen_moins.render("Tap", True, marron)
 texte_to = arial_font_moyen_moins.render("To", True, marron)
 texte_show = arial_font_moyen_moins.render("Show", True, marron)
-texte_credits_remi = arial_font_credits.render("Creator and developer :", True, noir)
-texte_credits_nom_creator = arial_font_petit_credits.render("Rémi L'AIL", True, noir)
-texte_credits_nom_designer = arial_font_petit_credits.render("Damien ", True, noir)
-texte_credits_damien = arial_font_credits.render("Game designer :", True, noir)
+texte_credits_remi = arial_font_credits.render("Créateur développeur :", True, noir)
+texte_credits_nom_creator = arial_font_petit_credits.render("Rémi MAIGROT", True, noir)
+texte_credits_nom_designer = arial_font_petit_credits.render("Damien Barthe", True, noir)
+texte_credits_damien = arial_font_credits.render("Illustrations :", True, noir)
 texte_credits = arial_font_brouillon.render("Credits : ", True, red)
 texte_niveau1 = arial_font_niveau.render("Niveau1", True, orange)
 texte_niveau2 = arial_font_niveau.render("Niveau2", True, orange)
@@ -324,7 +324,7 @@ def exit_game() :
 boucle = True
 while boucle == True :
     x, y = pygame.mouse.get_pos()
-    bucheron_random = randint(1, 200)
+    bucheron_random = randint(1, 100)
     print(game.bucheron_H.rect.x, game.bucheron_H.rect.y)
     print(game.bucheron_C.rect.x, game.bucheron_C.rect.y)
     game.arbre.rect.x = game.map.rect.x + 1490
@@ -447,12 +447,16 @@ while boucle == True :
                 if x >= 90 and x <= 311 and y >= 660 and y <= 770 :
                     stat = "menu"
                 if x >= 60 and x <= 460 and y >= 100 and y <= 300 :
+                    pygame.mixer.pause()
                     stat = "niveau1"
                 if x >= 1130 and x <= 1530 and y >= 100 and y <= 300 :
+                    pygame.mixer.pause()
                     stat = "niveau2"
                 if x >= 597 and x <= 997 and y >= 100 and y <= 300 :
+                    pygame.mixer.pause()
                     stat = "niveau3"
                 if x >= 597 and x <= 997 and y >= 400 and y <= 600 :
+                    pygame.mixer.pause()
                     stat = "infinity"
             elif stat == "commands" or stat == "help":
                 if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
