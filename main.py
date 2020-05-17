@@ -250,10 +250,12 @@ def niveau2() :
 def niveau3() :
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
+    fenetre.blit(game.player.image, game.player.rect)
 
 def infinity() :
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
+    fenetre.blit(game.player.image, game.player.rect)
 
 def option() :
     fenetre.blit(fond_ecran_option, (0, 0))
@@ -321,22 +323,19 @@ def exit_game() :
 boucle = True
 while boucle == True :
     x, y = pygame.mouse.get_pos()
+    print("x : ", game.arbre.rect.x, "y : ", game.arbre.rect.y)
 
     if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "infinity":
         #Player :
         fenetre.blit(game.player.image, game.player.rect)
         #Déplacements player :
         if game.pressed.get(pygame.K_z) == True :
-            print("Haut")
             game.player.move_haut()
         if game.pressed.get(pygame.K_s) == True :
-            print("Bas")
             game.player.move_bas()
         if game.pressed.get(pygame.K_d) == True :
-            print("Droite")
             game.player.move_droite()
         if game.pressed.get(pygame.K_q) == True :
-            print("Gauche")
             game.player.move_gauche()
 
     if stat == "menu" :
@@ -369,7 +368,10 @@ while boucle == True :
     if stat == "help" :
         help()
 
-    #Fps :
+    #Projectile :
+    for projectile in game.all_projectile :
+        projectile.move()
+    game.all_projectile.draw(fenetre)
 
     #Flip :
     pygame.display.flip()
@@ -394,6 +396,14 @@ while boucle == True :
                 boucle = False
                 pygame.quit()
                 sys.exit()
+            if event.key == pygame.K_SPACE and stat == "niveau1" :
+                game.ajout_projectile(game.player.direction)
+            if event.key == pygame.K_SPACE and stat == "niveau2" :
+                game.ajout_projectile(game.player.direction)
+            if event.key == pygame.K_SPACE and stat == "niveau3" :
+                game.ajout_projectile(game.player.direction)
+            if event.key == pygame.K_SPACE and stat == "infinity" :
+                game.ajout_projectile(game.player.direction)
 
         if event.type == pygame.MOUSEBUTTONDOWN :
             if stat == "option" :

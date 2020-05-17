@@ -21,23 +21,28 @@ class Player(pygame.sprite.Sprite) :
         self.rect.x = 740
         self.rect.y = 380
         self.vitesse = 20
+        self.direction = "B"
 
     def move_haut(self) :
+        self.direction = "H"
         self.image = pygame.image.load("sprite/cour_haut1.png")
         self.image = pygame.transform.scale(self.image, (100, 100))
         self.game.map.rect.y = self.game.map.rect.y + self.vitesse
 
     def move_bas(self) :
+        self.direction = "B"
         self.image = pygame.image.load("sprite/cour_bas1.png")
         self.image = pygame.transform.scale(self.image, (100, 100))
         self.game.map.rect.y = self.game.map.rect.y - self.vitesse
 
     def move_droite(self) :
+        self.direction = "D"
         self.image = pygame.image.load("sprite/cour_droite1.png")
         self.image = pygame.transform.scale(self.image, (100, 100))
         self.game.map.rect.x = self.game.map.rect.x - self.vitesse
 
     def move_gauche(self) :
+        self.direction = "G"
         self.image = pygame.image.load("sprite/cour_gauche1.png")
         self.image = pygame.transform.scale(self.image, (100, 100))
         self.game.map.rect.x = self.game.map.rect.x + self.vitesse
