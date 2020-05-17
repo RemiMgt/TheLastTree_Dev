@@ -39,7 +39,7 @@ texte_titre2 = arial_font.render("he Last Tree", True, vert_titre)
 
 #Musiques :
 musique_menu = pygame.mixer.Sound("assets/musique_menu.ogg")
-#musique_menu.play()
+musique_menu.play()
 
 #Création de la fenetre :
 pygame.display.set_caption("The Last Tree")
@@ -207,17 +207,53 @@ def jeux() :
         rectTexte_retour_menu.x = 115
         rectTexte_retour_menu.y = 705
 
+    if x >= 60 and x <= 460 and y >= 100 and y <= 300 :
+        fenetre.blit(bouton2_niveau1, (60, 100))
+        fenetre.blit(texte_niveau1, (140, 160))
+    else :
+        fenetre.blit(bouton_niveau1, rectBouton_niveau1)
+        fenetre.blit(texte_niveau1, (140, 160))
+
+    if x >= 597 and x <= 997 and y >= 100 and y <= 300 :
+        fenetre.blit(bouton2_niveau2, (597, 100))
+        fenetre.blit(texte_niveau2, (675, 160))
+    else :
+        fenetre.blit(bouton_niveau2, rectBouton_niveau2)
+        fenetre.blit(texte_niveau2, (675, 160))
+
+    if x >= 1130 and x <= 1530 and y >= 100 and y <= 300 :
+        fenetre.blit(bouton2_niveau3, (1130, 100))
+        fenetre.blit(texte_niveau3, (1210, 160))
+    else :
+        fenetre.blit(bouton_niveau3, rectBouton_niveau3)
+        fenetre.blit(texte_niveau3, (1210, 160))
+
+    if x >= 597 and x <= 997 and y >= 400 and y <= 600 :
+        fenetre.blit(bouton2_niveau_infi, (597, 400))
+        fenetre.blit(texte_infini, (720, 460))
+    else :
+        fenetre.blit(bouton_infinity, rectBouton_infinity)
+        fenetre.blit(texte_infini, (720, 460))
+
+
 def niveau1() :
-    pass
+    fenetre.blit(game.map.image, game.map.rect)
+    fenetre.blit(game.arbre.image, game.arbre.rect)
+    fenetre.blit(game.player.image, game.player.rect)
+
 
 def niveau2() :
-    pass
+    fenetre.blit(game.map.image, game.map.rect)
+    fenetre.blit(game.arbre.image, game.arbre.rect)
+    fenetre.blit(game.player.image, game.player.rect)
 
 def niveau3() :
-    pass
+    fenetre.blit(game.map.image, game.map.rect)
+    fenetre.blit(game.arbre.image, game.arbre.rect)
 
 def infinity() :
-    pass
+    fenetre.blit(game.map.image, game.map.rect)
+    fenetre.blit(game.arbre.image, game.arbre.rect)
 
 def option() :
     fenetre.blit(fond_ecran_option, (0, 0))
@@ -286,19 +322,22 @@ boucle = True
 while boucle == True :
     x, y = pygame.mouse.get_pos()
 
-    #if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" :
-    #Player :
-    fenetre.blit(game.player.image, game.player.rect)
-    #Déplacements player :
-    if game.pressed.get(pygame.K_z) == True :
-        print("Haut")
-        game.player.move_haut()
-    if game.pressed.get(pygame.K_s) == True :
-        game.player.move_bas()
-    if game.pressed.get(pygame.K_d) == True :
-        game.player.move_droite()
-    if game.pressed.get(pygame.K_q) == True :
-        game.player.move_gauche()
+    if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "infinity":
+        #Player :
+        fenetre.blit(game.player.image, game.player.rect)
+        #Déplacements player :
+        if game.pressed.get(pygame.K_z) == True :
+            print("Haut")
+            game.player.move_haut()
+        if game.pressed.get(pygame.K_s) == True :
+            print("Bas")
+            game.player.move_bas()
+        if game.pressed.get(pygame.K_d) == True :
+            print("Droite")
+            game.player.move_droite()
+        if game.pressed.get(pygame.K_q) == True :
+            print("Gauche")
+            game.player.move_gauche()
 
     if stat == "menu" :
         menu()
@@ -378,6 +417,14 @@ while boucle == True :
             elif stat == "jeux" :
                 if x >= 90 and x <= 311 and y >= 660 and y <= 770 :
                     stat = "menu"
+                if x >= 60 and x <= 460 and y >= 100 and y <= 300 :
+                    stat = "niveau1"
+                if x >= 1130 and x <= 1530 and y >= 100 and y <= 300 :
+                    stat = "niveau2"
+                if x >= 597 and x <= 997 and y >= 100 and y <= 300 :
+                    stat = "niveau3"
+                if x >= 597 and x <= 997 and y >= 400 and y <= 600 :
+                    stat = "infinity"
             elif stat == "commands" or stat == "help":
                 if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
                     stat = "option"
