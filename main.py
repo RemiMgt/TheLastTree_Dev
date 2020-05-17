@@ -323,7 +323,8 @@ def exit_game() :
 boucle = True
 while boucle == True :
     x, y = pygame.mouse.get_pos()
-    print("x : ", game.arbre.rect.x, "y : ", game.arbre.rect.y)
+    game.arbre.rect.x = game.map.rect.x + 1490
+    game.arbre.rect.y = game.map.rect.y + 1490
 
     if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "infinity":
         #Player :
