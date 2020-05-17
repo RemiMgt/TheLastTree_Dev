@@ -14,7 +14,7 @@ class Game() :
         self.bucheron_H = Bucheron_H(self)
         self.bucheron_C = Bucheron_C(self)
         self.all_bucheron_H = pygame.sprite.Group()
-        self.all_bucheron_V = pygame.sprite.Group()
+        self.all_bucheron_C = pygame.sprite.Group()
         self.all_projectile = pygame.sprite.Group()
         self.pressed = {}
 

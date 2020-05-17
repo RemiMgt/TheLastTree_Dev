@@ -20,6 +20,7 @@ vert_titre = (12, 50, 2)
 orange = (187, 109, 28)
 
 #Variables :
+bucheron_random = 1
 L = 1600
 H = 900
 stat = "menu"
@@ -323,6 +324,9 @@ def exit_game() :
 boucle = True
 while boucle == True :
     x, y = pygame.mouse.get_pos()
+    bucheron_random = randint(1, 200)
+    print(game.bucheron_H.rect.x, game.bucheron_H.rect.y)
+    print(game.bucheron_C.rect.x, game.bucheron_C.rect.y)
     game.arbre.rect.x = game.map.rect.x + 1490
     game.arbre.rect.y = game.map.rect.y + 1490
 
@@ -369,10 +373,24 @@ while boucle == True :
     if stat == "help" :
         help()
 
+    if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "infinity" :
+        if bucheron_random == 75 :
+            game.ajout_bucheron_H()
+        if bucheron_random == 50 :
+            game.ajout_bucheron_C()
+
     #Projectile :
     for projectile in game.all_projectile :
         projectile.move()
+    for bucheron_H in game.all_bucheron_H :
+        print("New bucheron H !")
+        bucheron_H.move()
+    for bucheron_C in game.all_bucheron_C :
+        print("New bucheron C !")
+        bucheron_C.move()
     game.all_projectile.draw(fenetre)
+    game.all_bucheron_H.draw(fenetre)
+    game.all_bucheron_C.draw(fenetre)
 
     #Flip :
     pygame.display.flip()

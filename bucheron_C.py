@@ -7,6 +7,8 @@ class Bucheron_C(pygame.sprite.Sprite) :
         self.image = pygame.image.load("assets/bucheron.png")
         self.rect = self.image.get_rect()
         self.game = game
+        self.rect.x = randint(game.map.rect.x, game.map.rect.x + 3000)
+        self.vitesse = 10
 
     def move(self) :
         if self.rect.x < self.game.arbre.rect.x :
