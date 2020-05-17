@@ -1,11 +1,13 @@
 import pygame
 from player import Player
 from map_jeux import Map
+from arbre import Arbre
 
 class Game() :
     def __init__(self) :
         self.player = Player(self)
         self.map = Map()
+        self.arbre = Arbre()
         self.pressed = {}
 
     def check_collision(self, sprite, group) : #FOnction qui retrun True si il y a collision entre sprite et group
