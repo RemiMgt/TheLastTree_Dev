@@ -7,6 +7,7 @@ from image import *
 from game import Game
 import sys
 
+pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
 
 game = Game()
@@ -39,8 +40,10 @@ texte_titre1 = arial_font_grand.render("T", True, vert_titre)
 texte_titre2 = arial_font.render("he Last Tree", True, vert_titre)
 
 #Musiques :
-musique_menu = pygame.mixer.Sound("assets/musique_menu.ogg")
-musique_menu.play()
+musique_menu = "assets/musique.ogg"
+pygame.mixer.music.load(musique_menu)
+pygame.mixer.music.set_volume(0.1)
+pygame.mixer.music.play(-1, 0)
 
 #Création de la fenetre :
 pygame.display.set_caption("The Last Tree")
@@ -325,8 +328,6 @@ boucle = True
 while boucle == True :
     x, y = pygame.mouse.get_pos()
     bucheron_random = randint(1, 100)
-    print(game.bucheron_H.rect.x, game.bucheron_H.rect.y)
-    print(game.bucheron_C.rect.x, game.bucheron_C.rect.y)
     game.arbre.rect.x = game.map.rect.x + 1490
     game.arbre.rect.y = game.map.rect.y + 1490
 
