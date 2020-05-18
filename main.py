@@ -354,13 +354,13 @@ while boucle == True :
         #Player :
         fenetre.blit(game.player.image, game.player.rect)
         #Déplacements player :
-        if game.pressed.get(haut) or game.pressed.get(pygame.K_w) == True and game.map.rect.y < -10:
+        if game.pressed.get(haut) == True and game.map.rect.y < -10:
             game.player.move_haut()
         if game.pressed.get(bas) == True and game.map.rect.y > -2080:
             game.player.move_bas()
         if game.pressed.get(droite) == True and game.map.rect.x > -1380:
             game.player.move_droite()
-        if game.pressed.get(gauche) or game.pressed.get(pygame.K_a) == True and game.map.rect.x < 0:
+        if game.pressed.get(gauche) == True and game.map.rect.x < 0:
             game.player.move_gauche()
 
     if stat == "menu" :
