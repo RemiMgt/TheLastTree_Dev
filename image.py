@@ -54,3 +54,14 @@ bouton_infinity = pygame.image.load("assets/bouton_niveau.png")
 bouton_infinity = pygame.transform.scale(bouton_infinity, (400, 200))
 bouton2_niveau_infi = pygame.image.load("assets/bouton_niveau2.png")
 bouton2_niveau_infi = pygame.transform.scale(bouton2_niveau_infi, (400, 200))
+
+#Commands clavier :
+commands_fleche = pygame.image.load("commands/fleche.png")
+commands_fleche = pygame.transform.scale(commands_fleche, (200, 129))
+
+commands_zqsd = pygame.image.load("commands/zqsd.png")
+commands_zqsd = pygame.transform.scale(commands_zqsd, (200, 129))
+
+
+commands_wasd = pygame.image.load("commands/wasd.png")
+commands_wasd = pygame.transform.scale(commands_wasd, (200, 129))

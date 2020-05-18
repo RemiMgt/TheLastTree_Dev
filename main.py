@@ -35,6 +35,12 @@ arial_font_petit_credits = pygame.font.SysFont("arial", 30, False, True)
 arial_font_brouillon = pygame.font.SysFont("arial", 85, True, False)
 arial_font_niveau = pygame.font.SysFont("arial", 60, True, False)
 
+#Commands clavier :
+haut = pygame.K_w
+bas = pygame.K_s
+droite = pygame.K_d
+gauche = pygame.K_a
+
 #Titre jeux :
 texte_titre1 = arial_font_grand.render("T", True, vert_titre)
 texte_titre2 = arial_font.render("he Last Tree", True, vert_titre)
@@ -141,6 +147,16 @@ rectBouton_niveau3.y = 100
 rectBouton_infinity = bouton_infinity.get_rect()
 rectBouton_infinity.x = 597
 rectBouton_infinity.y = 400
+
+rectCommands_fleche = commands_fleche.get_rect()
+rectCommands_fleche.x = 1260
+rectCommands_fleche.y = 150
+rectCommands_zqsd = commands_zqsd.get_rect()
+rectCommands_zqsd.x = 1260
+rectCommands_zqsd.y = 350
+rectCommands_wasd = commands_wasd.get_rect()
+rectCommands_wasd.x = 1260
+rectCommands_wasd.y = 550
 
 
 #Fonction du menu:
@@ -285,6 +301,9 @@ def commands() :
     fenetre.blit(fond_ecran_commands, (0, 0))
     fenetre.blit(bouton_retour_option, rectBouton_retour_option)
     fenetre.blit(texte_retour_option, rectTexte_retour_option)
+    fenetre.blit(commands_fleche, rectCommands_fleche)
+    fenetre.blit(commands_zqsd, rectCommands_zqsd)
+    fenetre.blit(commands_wasd, rectCommands_wasd)
 
     if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
         rectBouton_retour_option.x = -39
@@ -335,13 +354,13 @@ while boucle == True :
         #Player :
         fenetre.blit(game.player.image, game.player.rect)
         #Déplacements player :
-        if game.pressed.get(pygame.K_z) or game.pressed.get(pygame.K_w) == True and game.map.rect.y < -10:
+        if game.pressed.get(haut) or game.pressed.get(pygame.K_w) == True and game.map.rect.y < -10:
             game.player.move_haut()
-        if game.pressed.get(pygame.K_s) == True and game.map.rect.y > -2080:
+        if game.pressed.get(bas) == True and game.map.rect.y > -2080:
             game.player.move_bas()
-        if game.pressed.get(pygame.K_d) == True and game.map.rect.x > -1380:
+        if game.pressed.get(droite) == True and game.map.rect.x > -1380:
             game.player.move_droite()
-        if game.pressed.get(pygame.K_q) or game.pressed.get(pygame.K_a) == True and game.map.rect.x < 0:
+        if game.pressed.get(gauche) or game.pressed.get(pygame.K_a) == True and game.map.rect.x < 0:
             game.player.move_gauche()
 
     if stat == "menu" :
@@ -460,6 +479,39 @@ while boucle == True :
             elif stat == "commands" or stat == "help":
                 if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
                     stat = "option"
+                if x >= 1260 and x <= 1460 and y >= 150 and y <= 279 :
+                    rectCommands_fleche.x = 1290
+                    rectCommands_fleche.y = 130
+                    rectCommands_zqsd.x = 1260
+                    rectCommands_zqsd.y = 350
+                    rectCommands_wasd.x = 1260
+                    rectCommands_wasd.y = 550
+                    haut = pygame.K_UP
+                    bas = pygame.K_DOWN
+                    droite = pygame.K_RIGHT
+                    gauche = pygame.K_LEFT
+                if x >= 1260 and x <= 1460 and y >= 350 and y <= 479 :
+                    rectCommands_zqsd.x = 1290
+                    rectCommands_zqsd.y = 330
+                    rectCommands_fleche.x = 1260
+                    rectCommands_fleche.y = 150
+                    rectCommands_wasd.x = 1260
+                    rectCommands_wasd.y = 550
+                    haut = pygame.K_w
+                    bas = pygame.K_s
+                    droite = pygame.K_d
+                    gauche = pygame.K_a
+                if x >= 1260 and x <= 1460 and y >= 550 and y <= 679 :
+                    haut = pygame.K_z
+                    bas = pygame.K_s
+                    droite = pygame.K_d
+                    gauche = pygame.K_q
+                    rectCommands_wasd.x = 1290
+                    rectCommands_wasd.y = 530
+                    rectCommands_fleche.x = 1260
+                    rectCommands_fleche.y = 150
+                    rectCommands_zqsd.x = 1260
+                    rectCommands_zqsd.y = 350
 
         '''Effet bouton option '''
         if stat == "option" :
