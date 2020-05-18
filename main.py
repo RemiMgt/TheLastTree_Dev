@@ -42,7 +42,7 @@ texte_titre2 = arial_font.render("he Last Tree", True, vert_titre)
 #Musiques :
 musique_menu = "assets/musique.ogg"
 pygame.mixer.music.load(musique_menu)
-pygame.mixer.music.set_volume(0.1)
+pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play(-1, 0)
 
 #Création de la fenetre :
