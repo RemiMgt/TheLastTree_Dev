@@ -5,6 +5,7 @@ class Bucheron_H(pygame.sprite.Sprite) :
     def __init__(self, game) :
         super().__init__()
         self.image = pygame.image.load("assets/bucheron.png")
+        self.image = pygame.transform.scale(self.image, (80, 80))
         self.rect = self.image.get_rect()
         self.game = game
         self.rect.y = randint(game.map.rect.y, game.map.rect.y + 3000)

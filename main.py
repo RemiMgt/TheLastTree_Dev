@@ -375,7 +375,7 @@ while boucle == True :
         help()
 
     if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "infinity" :
-        if bucheron_random == 75 :
+        if bucheron_random == 40 :
             game.ajout_bucheron_H()
         if bucheron_random == 50 :
             game.ajout_bucheron_C()
@@ -384,10 +384,8 @@ while boucle == True :
     for projectile in game.all_projectile :
         projectile.move()
     for bucheron_H in game.all_bucheron_H :
-        print("New bucheron H !")
         bucheron_H.move()
     for bucheron_C in game.all_bucheron_C :
-        print("New bucheron C !")
         bucheron_C.move()
     game.all_projectile.draw(fenetre)
     game.all_bucheron_H.draw(fenetre)
