@@ -345,7 +345,7 @@ def exit_game() :
 #Boucle de jeux :
 boucle = True
 while boucle == True :
-    print(game.compteur_kill)
+    print(game.score)
     x, y = pygame.mouse.get_pos()
     bucheron_random = randint(1, 100)
     game.arbre.rect.x = game.map.rect.x + 1490
