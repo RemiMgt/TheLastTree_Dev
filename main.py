@@ -412,10 +412,10 @@ while boucle == True :
     game.all_bucheron_H.draw(fenetre)
     game.all_bucheron_C.draw(fenetre)
 
-    '''
     if game.GAME_OVER == True :
+        game.GAME_OVER = False
+        game.score = 0
         stat = "menu"
-    '''
 
     #Flip :
     pygame.display.flip()
