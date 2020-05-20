@@ -21,3 +21,4 @@ class Projectile(pygame.sprite.Sprite) :
             self.rect.x = self.rect.x + self.vitesse
         elif self.direction == "G" :
             self.rect.x = self.rect.x - self.vitesse
+        #Diagonale

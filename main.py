@@ -362,18 +362,6 @@ while boucle == True :
             game.player.move_droite()
         if game.pressed.get(gauche) == True and game.map.rect.x < 0:
             game.player.move_gauche()
-        if game.pressed.get(haut) == True and if game.pressed.get(droite) == True :
-            game.player.move_haut()
-            game.player.move_droite
-        if game.pressed.get(haut) == True and if game.pressed.get(gauche) == True :
-            game.player.move_haut()
-            game.player.move_gauche()
-        if game.pressed.get(bas) == True and game.pressed.get(droite) == True :
-            game.player.move_bas()
-            game.player.move_droite()
-        if game.pressed.get(bas) == True and game.pressed.get(gauche) == True :
-            game.player.move_bas()
-            game.player.move_gauche()
 
     if stat == "menu" :
         menu()
@@ -457,9 +445,9 @@ while boucle == True :
         if event.type == pygame.MOUSEBUTTONDOWN :
             if stat == "option" :
                 if x >= 95 and x <= 238 and y >= 122 and y <= 234 :
-                    pygame.mixer.unpause()
+                    pygame.mixer.music.unpause()
                 if x >= 352 and x <= 497 and y >= 92 and y <= 250 :
-                    pygame.mixer.pause()
+                    pygame.mixer.music.pause()
                 if x >= 83 and x <= 365 and y >= 502 and y <= 607 :
                     stat = "commands"
                 if x >= 148 and x <= 348 and y >= 265 and y <= 460 :
