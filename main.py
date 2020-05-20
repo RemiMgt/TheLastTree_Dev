@@ -40,6 +40,7 @@ haut = pygame.K_w
 bas = pygame.K_s
 droite = pygame.K_d
 gauche = pygame.K_a
+attack = pygame.K_SPACE
 
 #Titre jeux :
 texte_titre1 = arial_font_grand.render("T", True, vert_titre)
@@ -75,6 +76,8 @@ texte_niveau1 = arial_font_niveau.render("Niveau1", True, orange)
 texte_niveau2 = arial_font_niveau.render("Niveau2", True, orange)
 texte_niveau3 = arial_font_niveau.render("Niveau3", True, orange)
 texte_infini = arial_font_niveau.render("Infini", True, orange)
+texte_attack = arial_font_grand.render(chr(attack), True, red)
+texte_score = arial_font_moyen.render(str(game.score), True, red)
 
 #Rect :
 rectBouton_play = bouton_play.get_rect()
@@ -158,6 +161,13 @@ rectCommands_wasd = commands_wasd.get_rect()
 rectCommands_wasd.x = 1260
 rectCommands_wasd.y = 550
 
+rectScore = texte_score.get_rect()
+rectScore.x = 10
+rectScore.y = 10
+
+rectFin_jeux = fin_jeux.get_rect()
+rectFin_jeux.x = 230
+rectFin_jeux.y = 0
 
 #Fonction du menu:
 def menu() :
@@ -292,9 +302,9 @@ def option() :
     fenetre.blit(texte_credits, (1130, 100))
     fenetre.blit(rond_credits, (900, 180))
     fenetre.blit(texte_credits_remi, (1110, 370))
-    fenetre.blit(texte_credits_nom_creator, (1170, 440))
-    fenetre.blit(texte_credits_damien, (1150, 520))
-    fenetre.blit(texte_credits_nom_designer, (1192, 590))
+    fenetre.blit(texte_credits_nom_creator, (1130, 440))
+    fenetre.blit(texte_credits_damien, (1160, 520))
+    fenetre.blit(texte_credits_nom_designer, (1146, 590))
 
 def commands() :
     x, y = pygame.mouse.get_pos()
@@ -332,6 +342,13 @@ def help() :
         rectTexte_retour_option.x = 115
         rectTexte_retour_option.y = 705
 
+def fin_de_jeux() :
+    fenetre.blit(fin_jeux, rectFin_jeux)
+    #fenetre.blit(retour_menu)
+    rectScore.x = 500
+    rectScore.y = 500
+    fenetre.blit(texte_score, rectScore)
+
 def exit_game() :
     print("Fermeture du projet !")
     boucle = False
@@ -345,7 +362,7 @@ def exit_game() :
 #Boucle de jeux :
 boucle = True
 while boucle == True :
-    print(game.score)
+    #print(game.score)
     x, y = pygame.mouse.get_pos()
     bucheron_random = randint(1, 100)
     game.arbre.rect.x = game.map.rect.x + 1490
@@ -394,7 +411,12 @@ while boucle == True :
     if stat == "help" :
         help()
 
+    if stat == "fin_jeux" :
+        fin_de_jeux()
+
     if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "infinity" :
+        texte_score = arial_font_moyen.render(str(game.score), True, red)
+        fenetre.blit(texte_score, rectScore)
         if game.GAME_OVER == False :
             if bucheron_random == 40 :
                 game.ajout_bucheron_H()
@@ -413,9 +435,13 @@ while boucle == True :
     game.all_bucheron_C.draw(fenetre)
 
     if game.GAME_OVER == True :
-        game.GAME_OVER = False
-        game.score = 0
-        stat = "menu"
+        stat = "fin_jeux"
+        pygame.mixer.music.unpause()
+
+    if stat == "commands" :
+        texte_attack = arial_font_grand.render(chr(attack), True, red)
+        fenetre.blit(texte_attack, (10, 10))
+        print(chr(attack))
 
     #Flip :
     pygame.display.flip()
@@ -440,14 +466,17 @@ while boucle == True :
                 boucle = False
                 pygame.quit()
                 sys.exit()
-            if event.key == pygame.K_SPACE and stat == "niveau1" :
+            if event.key == attack and stat == "niveau1" :
                 game.ajout_projectile(game.player.direction)
-            if event.key == pygame.K_SPACE and stat == "niveau2" :
+            if event.key == attack and stat == "niveau2" :
                 game.ajout_projectile(game.player.direction)
-            if event.key == pygame.K_SPACE and stat == "niveau3" :
+            if event.key == attack and stat == "niveau3" :
                 game.ajout_projectile(game.player.direction)
-            if event.key == pygame.K_SPACE and stat == "infinity" :
+            if event.key == attack and stat == "infinity" :
                 game.ajout_projectile(game.player.direction)
+
+            if stat == "commands" :
+                attack = pygame.key.get_pressed()
 
         if event.type == pygame.MOUSEBUTTONDOWN :
             if stat == "option" :
@@ -472,16 +501,16 @@ while boucle == True :
                 if x >= 90 and x <= 311 and y >= 660 and y <= 770 :
                     stat = "menu"
                 if x >= 60 and x <= 460 and y >= 100 and y <= 300 :
-                    pygame.mixer.pause()
+                    pygame.mixer.music.pause()
                     stat = "niveau1"
                 if x >= 1130 and x <= 1530 and y >= 100 and y <= 300 :
-                    pygame.mixer.pause()
+                    pygame.mixer.music.pause()
                     stat = "niveau2"
                 if x >= 597 and x <= 997 and y >= 100 and y <= 300 :
-                    pygame.mixer.pause()
+                    pygame.mixer.music.pause()
                     stat = "niveau3"
                 if x >= 597 and x <= 997 and y >= 400 and y <= 600 :
-                    pygame.mixer.pause()
+                    pygame.mixer.music.pause()
                     stat = "infinity"
             elif stat == "commands" or stat == "help":
                 if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
