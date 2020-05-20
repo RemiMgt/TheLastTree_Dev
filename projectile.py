@@ -12,13 +12,35 @@ class Projectile(pygame.sprite.Sprite) :
         self.vitesse = 15
         self.direction = direction
 
+    def remove(self) :
+        self.game.all_projectile.remove(self) #Détruire le projectile courant
+
     def move(self) :
         if self.direction == "H" :
-            self.rect.y = self.rect.y - self.vitesse
+            if not self.game.check_collision(self, self.game.all_bucheron_H) and not self.game.check_collision(self, self.game.all_bucheron_C) :
+                self.rect.y = self.rect.y - self.vitesse
+            else :
+                print("Collision / Suppression !")
+                self.game.compteur_kill += 1
+                self.remove()
         elif self.direction == "B" :
-            self.rect.y = self.rect.y + self.vitesse
+            if not self.game.check_collision(self, self.game.all_bucheron_H) and not self.game.check_collision(self, self.game.all_bucheron_C) :
+                self.rect.y = self.rect.y + self.vitesse
+            else :
+                print("Collision / Suppression !")
+                self.game.compteur_kill += 1
+                self.remove()
         elif self.direction == "D" :
-            self.rect.x = self.rect.x + self.vitesse
+            if not self.game.check_collision(self, self.game.all_bucheron_H) and not self.game.check_collision(self, self.game.all_bucheron_C) :
+                self.rect.x = self.rect.x + self.vitesse
+            else :
+                print("Collision / Suppression !")
+                self.game.compteur_kill += 1
+                self.remove()
         elif self.direction == "G" :
-            self.rect.x = self.rect.x - self.vitesse
-        #Diagonale
+            if not self.game.check_collision(self, self.game.all_bucheron_H) and not self.game.check_collision(self, self.game.all_bucheron_C) :
+                self.rect.x = self.rect.x - self.vitesse
+            else :
+                print("Collision / Suppression !")
+                self.game.compteur_kill += 1
+                self.remove()

@@ -13,10 +13,30 @@ class Bucheron_H(pygame.sprite.Sprite) :
 
     def move(self) :
         if self.rect.x < self.game.arbre.rect.x :
-            self.rect.x = self.rect.x + self.vitesse
+            if not self.rect.colliderect(self.game.arbre.rect) :
+                self.rect.x = self.rect.x + self.vitesse
+            else :
+                self.game.GAME_OVER = True
+                self.game.all_bucheron_C.empty()
+                self.game.all_bucheron_H.empty()
         if self.rect.x > self.game.arbre.rect.x :
-            self.rect.x = self.rect.x - self.vitesse
+            if not self.rect.colliderect(self.game.arbre.rect) :
+                self.rect.x = self.rect.x - self.vitesse
+            else :
+                self.game.GAME_OVER = True
+                self.game.all_bucheron_C.empty()
+                self.game.all_bucheron_H.empty()
         if self.rect.y > self.game.arbre.rect.y :
-            self.rect.y = self.rect.y - self.vitesse
+            if not self.rect.colliderect(self.game.arbre.rect) :
+                self.rect.y = self.rect.y - self.vitesse
+            else :
+                self.game.GAME_OVER = True
+                self.game.all_bucheron_C.empty()
+                self.game.all_bucheron_H.empty()
         if self.rect.y < self.game.arbre.rect.y :
-            self.rect.y = self.rect.y + self.vitesse
+            if not self.rect.colliderect(self.game.arbre.rect) :
+                self.rect.y = self.rect.y + self.vitesse
+            else :
+                self.game.GAME_OVER = True
+                self.game.all_bucheron_C.empty()
+                self.game.all_bucheron_H.empty()

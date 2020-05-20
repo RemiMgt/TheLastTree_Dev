@@ -345,6 +345,7 @@ def exit_game() :
 #Boucle de jeux :
 boucle = True
 while boucle == True :
+    print(game.compteur_kill)
     x, y = pygame.mouse.get_pos()
     bucheron_random = randint(1, 100)
     game.arbre.rect.x = game.map.rect.x + 1490
@@ -394,10 +395,11 @@ while boucle == True :
         help()
 
     if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "infinity" :
-        if bucheron_random == 40 :
-            game.ajout_bucheron_H()
-        if bucheron_random == 50 :
-            game.ajout_bucheron_C()
+        if game.GAME_OVER == False :
+            if bucheron_random == 40 :
+                game.ajout_bucheron_H()
+            if bucheron_random == 50 :
+                game.ajout_bucheron_C()
 
     #Projectile :
     for projectile in game.all_projectile :
@@ -409,6 +411,11 @@ while boucle == True :
     game.all_projectile.draw(fenetre)
     game.all_bucheron_H.draw(fenetre)
     game.all_bucheron_C.draw(fenetre)
+
+    '''
+    if game.GAME_OVER == True :
+        stat = "menu"
+    '''
 
     #Flip :
     pygame.display.flip()

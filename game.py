@@ -17,6 +17,8 @@ class Game() :
         self.all_bucheron_C = pygame.sprite.Group()
         self.all_projectile = pygame.sprite.Group()
         self.pressed = {}
+        self.GAME_OVER = False
+        self.compteur_kill = 0
 
     def ajout_bucheron_H(self) :
         self.all_bucheron_H.add(Bucheron_H(self))
@@ -29,3 +31,6 @@ class Game() :
 
     def check_collision(self, sprite, group) : #FOnction qui retrun True si il y a collision entre sprite et group
         return pygame.sprite.spritecollide(sprite, group, True, pygame.sprite.collide_mask) #sprite / group / Oui ou non détruire entité si il y a collision
+
+    def check_collision_sprite(self, rect1, rect2) : #FOnction qui retrun True si il y a collision entre sprite et group
+        return pygame.sprite.collide_rect(rect1, rect2) #sprite / group / Oui ou non détruire entité si il y a collision
