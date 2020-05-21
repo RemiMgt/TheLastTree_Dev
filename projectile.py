@@ -21,26 +21,26 @@ class Projectile(pygame.sprite.Sprite) :
                 self.rect.y = self.rect.y - self.vitesse
             else :
                 print("Collision / Suppression !")
-                self.game.score += 1
+                self.game.nombre_kill_restant -= 1
                 self.remove()
         elif self.direction == "B" :
             if not self.game.check_collision(self, self.game.all_bucheron_H) and not self.game.check_collision(self, self.game.all_bucheron_C) :
                 self.rect.y = self.rect.y + self.vitesse
             else :
                 print("Collision / Suppression !")
-                self.game.score += 1
+                self.game.nombre_kill_restant -= 1
                 self.remove()
         elif self.direction == "D" :
             if not self.game.check_collision(self, self.game.all_bucheron_H) and not self.game.check_collision(self, self.game.all_bucheron_C) :
                 self.rect.x = self.rect.x + self.vitesse
             else :
                 print("Collision / Suppression !")
-                self.game.score += 1
+                self.game.nombre_kill_restant -= 1
                 self.remove()
         elif self.direction == "G" :
             if not self.game.check_collision(self, self.game.all_bucheron_H) and not self.game.check_collision(self, self.game.all_bucheron_C) :
                 self.rect.x = self.rect.x - self.vitesse
             else :
                 print("Collision / Suppression !")
-                self.game.score += 1
+                self.game.nombre_kill_restant -= 1
                 self.remove()

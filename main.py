@@ -78,7 +78,7 @@ texte_niveau2 = arial_font_niveau.render("Niveau2", True, orange)
 texte_niveau3 = arial_font_niveau.render("Niveau3", True, orange)
 texte_infini = arial_font_niveau.render("Infini", True, orange)
 texte_attack = arial_font_grand.render(chr(attack), True, red)
-texte_score = arial_font_moyen.render(str(game.score), True, red)
+texte_nombre_kill_restant = arial_font_moyen.render(str(game.nombre_kill_restant), True, red)
 texte_ton_score = arial_font_moyen.render("Ton score : ", True, noir)
 texte_retour_menu_fin = arial_font_moyen.render("Menu", True, marron)
 
@@ -164,9 +164,9 @@ rectCommands_wasd = commands_wasd.get_rect()
 rectCommands_wasd.x = 1260
 rectCommands_wasd.y = 550
 
-rectScore = texte_score.get_rect()
-rectScore.x = 10
-rectScore.y = 10
+rectScore = texte_nombre_kill_restant.get_rect()
+rectScore.x = 20
+rectScore.y = 20
 
 rectFin_jeux = fin_jeux.get_rect()
 rectFin_jeux.x = 230
@@ -348,8 +348,7 @@ def help() :
 def fin_de_jeux() :
     fenetre.blit(menu_fin_jeux, (0, 0))
     fenetre.blit(fin_jeux, rectFin_jeux)
-    #fenetre.blit(retour_menu)
-    texte_score = arial_font.render(str(game.score), True, red)
+    texte_score = arial_font.render(str(game.nombre_kill_restant), True, red)
     rectScore.x = 785
     rectScore.y = 372
     fenetre.blit(texte_score, rectScore)
@@ -423,7 +422,7 @@ while boucle == True :
         fin_de_jeux()
 
     if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "infinity" :
-        texte_score = arial_font_moyen.render(str(game.score), True, red)
+        texte_score = arial_font_moyen.render(str(game.nombre_kill_restant), True, red)
         fenetre.blit(texte_score, rectScore)
         if game.GAME_OVER == False :
             if bucheron_random == 40 :
@@ -442,7 +441,15 @@ while boucle == True :
     game.all_bucheron_H.draw(fenetre)
     game.all_bucheron_C.draw(fenetre)
 
+    if game.nombre_kill_restant == 0 :
+        print("Gagné !")
+        #Changer texte en perdu
+        stat = "fin_jeux"
+        pygame.mixer.music.unpause()
+
     if game.GAME_OVER == True :
+        print("Perdu !")
+        #Changer texte en gagner
         stat = "fin_jeux"
         pygame.mixer.music.unpause()
 
@@ -560,8 +567,9 @@ while boucle == True :
                 if x >= 681 and x <= 960 and y >= 460 and y <= 560 :
                     game.GAME_OVER = False
                     stat = "menu"
-                    rectScore.x = 10
-                    rectScore.y = 10
+                    game.nombre_kill_restant = 30
+                    rectScore.x = 20
+                    rectScore.y = 20
 
         '''Effet bouton option '''
         if stat == "option" :
