@@ -39,6 +39,13 @@ fond_ecran_niveau = pygame.transform.scale(fond_ecran_niveau, (1600, 900))
 
 fin_jeux = pygame.image.load("assets/fin_jeux.png")
 fin_jeux = pygame.transform.scale(fin_jeux, (1100, 1100))
+menu_fin_jeux = pygame.image.load("assets/menu_fin_jeux.jpg")
+menu_fin_jeux = pygame.transform.scale(menu_fin_jeux, (1600, 900))
+
+bouton_retour_menu_fin = pygame.image.load("assets/bouton_retour_menu.png")
+dimension_bouton_retour_menu_width = bouton_retour_menu_fin.get_width()
+dimension_bouton_retour_menu_height = bouton_retour_menu_fin.get_height()
+bouton_retour_menu_fin = pygame.transform.scale(bouton_retour_menu_fin, (300, 120))
 
 #Niveau :
 bouton_niveau1 = pygame.image.load("assets/bouton_niveau.png")

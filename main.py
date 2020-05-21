@@ -34,6 +34,7 @@ arial_font_credits = pygame.font.SysFont("arial", 25, True, False)
 arial_font_petit_credits = pygame.font.SysFont("arial", 30, False, True)
 arial_font_brouillon = pygame.font.SysFont("arial", 85, True, False)
 arial_font_niveau = pygame.font.SysFont("arial", 60, True, False)
+arial_font_score = pygame.font.SysFont("arial", 100, True, False)
 
 #Commands clavier :
 haut = pygame.K_w
@@ -78,6 +79,8 @@ texte_niveau3 = arial_font_niveau.render("Niveau3", True, orange)
 texte_infini = arial_font_niveau.render("Infini", True, orange)
 texte_attack = arial_font_grand.render(chr(attack), True, red)
 texte_score = arial_font_moyen.render(str(game.score), True, red)
+texte_ton_score = arial_font_moyen.render("Ton score : ", True, noir)
+texte_retour_menu_fin = arial_font_moyen.render("Menu", True, marron)
 
 #Rect :
 rectBouton_play = bouton_play.get_rect()
@@ -343,11 +346,16 @@ def help() :
         rectTexte_retour_option.y = 705
 
 def fin_de_jeux() :
+    fenetre.blit(menu_fin_jeux, (0, 0))
     fenetre.blit(fin_jeux, rectFin_jeux)
     #fenetre.blit(retour_menu)
-    rectScore.x = 500
-    rectScore.y = 500
+    texte_score = arial_font.render(str(game.score), True, red)
+    rectScore.x = 785
+    rectScore.y = 372
     fenetre.blit(texte_score, rectScore)
+    fenetre.blit(texte_ton_score, (650, 255))
+    fenetre.blit(bouton_retour_menu_fin, (670, 450))
+    fenetre.blit(texte_retour_menu_fin, (715, 475))
 
 def exit_game() :
     print("Fermeture du projet !")
@@ -548,6 +556,12 @@ while boucle == True :
                     rectCommands_fleche.y = 150
                     rectCommands_zqsd.x = 1260
                     rectCommands_zqsd.y = 350
+            elif stat == "fin_jeux" :
+                if x >= 681 and x <= 960 and y >= 460 and y <= 560 :
+                    game.GAME_OVER = False
+                    stat = "menu"
+                    rectScore.x = 10
+                    rectScore.y = 10
 
         '''Effet bouton option '''
         if stat == "option" :

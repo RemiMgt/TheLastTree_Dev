@@ -19,21 +19,28 @@ class Bucheron_C(pygame.sprite.Sprite) :
                 self.game.GAME_OVER = True
                 self.game.all_bucheron_C.empty()
                 self.game.all_bucheron_H.empty()
+                self.game.all_projectile.empty()
         if self.rect.x > self.game.arbre.rect.x :
             if not self.rect.colliderect(self.game.arbre.rect) :
                 self.rect.x = self.rect.x - self.vitesse
             else :
                 self.game.GAME_OVER = True
                 self.game.all_bucheron_C.empty()
+                self.game.all_bucheron_H.empty()
+                self.game.all_projectile.empty()
         if self.rect.y > self.game.arbre.rect.y :
             if not self.rect.colliderect(self.game.arbre.rect) :
                 self.rect.y = self.rect.y - self.vitesse
             else :
                 self.game.GAME_OVER = True
                 self.game.all_bucheron_C.empty()
+                self.game.all_bucheron_H.empty()
+                self.game.all_projectile.empty()
         if self.rect.y < self.game.arbre.rect.y :
             if not self.rect.colliderect(self.game.arbre.rect) :
                 self.rect.y = self.rect.y + self.vitesse
             else :
                 self.game.GAME_OVER = True
                 self.game.all_bucheron_C.empty()
+                self.game.all_bucheron_H.empty()
+                self.game.all_projectile.empty()
