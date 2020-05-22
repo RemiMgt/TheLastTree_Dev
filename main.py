@@ -53,6 +53,25 @@ pygame.mixer.music.load(musique_menu)
 pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play(-1, 0)
 
+#Joystik :
+
+joy = "rien"
+
+nb_joysticks = pygame.joystick.get_count()
+print("Il y a", nb_joysticks, "joystick(s) branché(s)")
+
+#On compte les joysticks
+nb_joysticks = pygame.joystick.get_count()
+#Et on en crée un s'il y a en au moins un
+if nb_joysticks > 0:
+	mon_joystick = pygame.joystick.Joystick(0)
+
+mon_joystick.init() #Initialisation
+print("Axes :", mon_joystick.get_numaxes())
+print("Boutons :", mon_joystick.get_numbuttons())
+print("Trackballs :", mon_joystick.get_numballs())
+print("Hats :", mon_joystick.get_numhats())
+
 #Création de la fenetre :
 pygame.display.set_caption("The Last Tree")
 fenetre = pygame.display.set_mode((L,H))
@@ -369,9 +388,10 @@ def exit_game() :
 #Boucle de jeux :
 boucle = True
 while boucle == True :
+
     #print(game.score)
     x, y = pygame.mouse.get_pos()
-    bucheron_random = randint(1, 100)
+    bucheron_random = randint(1, 100000000000000000000000000000000000000000)
     game.arbre.rect.x = game.map.rect.x + 1490
     game.arbre.rect.y = game.map.rect.y + 1490
 
@@ -379,6 +399,7 @@ while boucle == True :
         #Player :
         fenetre.blit(game.player.image, game.player.rect)
         #Déplacements player :
+        '''Clavier : '''
         if game.pressed.get(haut) == True and game.map.rect.y < -10:
             game.player.move_haut()
         if game.pressed.get(bas) == True and game.map.rect.y > -2080:
@@ -434,6 +455,10 @@ while boucle == True :
     for projectile in game.all_projectile :
         projectile.move()
     for bucheron_H in game.all_bucheron_H :
+        if game.player.direction == "D" :
+            bucheron_H.rect.x = bucheron_H.rect.x - game.player.vitesse
+        if game.player.direction == "G" :
+            bucheron_H.rect.x = bucheron_H.rect.x + game.player.vitesse
         bucheron_H.move()
     for bucheron_C in game.all_bucheron_C :
         bucheron_C.move()
@@ -456,12 +481,26 @@ while boucle == True :
     if stat == "commands" :
         texte_attack = arial_font_grand.render(chr(attack), True, red)
         fenetre.blit(texte_attack, (10, 10))
-        print(chr(attack))
+        #print(chr(attack))
 
     #Flip :
     pygame.display.flip()
 
     for event in pygame.event.get() :
+
+        if event.type == JOYAXISMOTION :
+            game.pressed[event.axis] = True
+            game.pressed[event.value] = True
+
+        if event.type == JOYAXISMOTION :
+            if event.axis == 1 and event.value < 0 and game.map.rect.y < -10 :
+                game.player.move_haut_joy()
+            if event.axis == 1 and event.value > 0 and game.map.rect.y > -2080 :
+                game.player.move_bas_joy()
+            if event.axis == 0 and event.value < 0 and game.map.rect.x < 0 :
+                game.player.move_gauche_joy()
+            if event.axis == 0 and event.value > 0 and game.map.rect.x > -1380 :
+                game.player.move_droite_joy()
 
         if event.type == pygame.KEYDOWN :
             game.pressed[event.key] = True
@@ -474,6 +513,15 @@ while boucle == True :
             boucle = False
             pygame.quit()
             sys.exit()
+
+        if event.type == JOYBUTTONDOWN:
+            print(event.button)
+            game.pressed[event.button] = True
+            if event.button == 0 and stat == "niveau1" :
+                game.ajout_projectile(game.player.direction)
+        if event.type == JOYBUTTONUP :
+            game.pressed[event.button] = False
+
 
         if event.type == pygame.KEYDOWN :
             if event.key == pygame.K_ESCAPE :
@@ -570,6 +618,10 @@ while boucle == True :
                     game.nombre_kill_restant = 30
                     rectScore.x = 20
                     rectScore.y = 20
+                    game.map.rect.x = -1050
+                    game.map.rect.y = -700
+                    game.player.rect.x = 740
+                    game.player.rect.y = 380
 
         '''Effet bouton option '''
         if stat == "option" :

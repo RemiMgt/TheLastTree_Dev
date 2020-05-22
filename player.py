@@ -21,6 +21,7 @@ class Player(pygame.sprite.Sprite) :
         self.rect.x = 740
         self.rect.y = 380
         self.vitesse = 30
+        self.vitesse_joy = 15
         self.direction = "B"
 
     def move_haut(self) :
@@ -46,3 +47,29 @@ class Player(pygame.sprite.Sprite) :
         self.image = pygame.image.load("sprite/cour_gauche1.png")
         self.image = pygame.transform.scale(self.image, (120, 120))
         self.game.map.rect.x = self.game.map.rect.x + self.vitesse
+
+
+
+    def move_haut_joy(self) :
+        self.direction = "H"
+        self.image = pygame.image.load("sprite/cour_haut1.png")
+        self.image = pygame.transform.scale(self.image, (120, 120))
+        self.game.map.rect.y = self.game.map.rect.y + self.vitesse_joy
+
+    def move_bas_joy(self) :
+        self.direction = "B"
+        self.image = pygame.image.load("sprite/cour_bas1.png")
+        self.image = pygame.transform.scale(self.image, (120, 120))
+        self.game.map.rect.y = self.game.map.rect.y - self.vitesse_joy
+
+    def move_droite_joy(self) :
+        self.direction = "D"
+        self.image = pygame.image.load("sprite/cour_droite1.png")
+        self.image = pygame.transform.scale(self.image, (120, 120))
+        self.game.map.rect.x = self.game.map.rect.x - self.vitesse_joy
+
+    def move_gauche_joy(self) :
+        self.direction = "G"
+        self.image = pygame.image.load("sprite/cour_gauche1.png")
+        self.image = pygame.transform.scale(self.image, (120, 120))
+        self.game.map.rect.x = self.game.map.rect.x + self.vitesse_joy
