@@ -44,3 +44,14 @@ class Bucheron_C(pygame.sprite.Sprite) :
                 self.game.all_bucheron_C.empty()
                 self.game.all_bucheron_H.empty()
                 self.game.all_projectile.empty()
+
+
+    def move_player(self) :
+        if self.game.player.direction == "D" :
+            self.rect.x = self.rect.x - self.vitesse
+        if self.game.player.direction == "G" :
+            self.rect.x = self.rect.x + self.vitesse
+        if self.game.player.direction == "H" :
+            self.rect.y = self.rect.y + self.vitesse
+        if self.game.player.direction == "B" :
+            self.rect.y = self.rect.y - self.vitesse

@@ -44,3 +44,13 @@ class Projectile(pygame.sprite.Sprite) :
                 print("Collision / Suppression !")
                 self.game.nombre_kill_restant -= 1
                 self.remove()
+
+    def move_player(self) :
+        if self.game.player.direction == "D" :
+            self.rect.x = self.rect.x - self.vitesse
+        if self.game.player.direction == "G" :
+            self.rect.x = self.rect.x + self.vitesse
+        if self.game.player.direction == "H" :
+            self.rect.y = self.rect.y + self.vitesse
+        if self.game.player.direction == "B" :
+            self.rect.y = self.rect.y - self.vitesse

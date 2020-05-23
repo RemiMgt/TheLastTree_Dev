@@ -66,11 +66,14 @@ nb_joysticks = pygame.joystick.get_count()
 if nb_joysticks > 0:
 	mon_joystick = pygame.joystick.Joystick(0)
 
-mon_joystick.init() #Initialisation
+	mon_joystick.init() #Initialisation
+
+'''
 print("Axes :", mon_joystick.get_numaxes())
 print("Boutons :", mon_joystick.get_numbuttons())
 print("Trackballs :", mon_joystick.get_numballs())
 print("Hats :", mon_joystick.get_numhats())
+'''
 
 #Création de la fenetre :
 pygame.display.set_caption("The Last Tree")
@@ -391,7 +394,7 @@ while boucle == True :
 
     #print(game.score)
     x, y = pygame.mouse.get_pos()
-    bucheron_random = randint(1, 100000000000000000000000000000000000000000)
+    bucheron_random = randint(1, 100)
     game.arbre.rect.x = game.map.rect.x + 1490
     game.arbre.rect.y = game.map.rect.y + 1490
 
@@ -454,13 +457,12 @@ while boucle == True :
     #Projectile :
     for projectile in game.all_projectile :
         projectile.move()
+        #projectile.move_player()
     for bucheron_H in game.all_bucheron_H :
-        if game.player.direction == "D" :
-            bucheron_H.rect.x = bucheron_H.rect.x - game.player.vitesse
-        if game.player.direction == "G" :
-            bucheron_H.rect.x = bucheron_H.rect.x + game.player.vitesse
+        bucheron_H.move_player()
         bucheron_H.move()
     for bucheron_C in game.all_bucheron_C :
+        bucheron_C.move_player()
         bucheron_C.move()
     game.all_projectile.draw(fenetre)
     game.all_bucheron_H.draw(fenetre)
