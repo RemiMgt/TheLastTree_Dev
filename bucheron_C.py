@@ -47,11 +47,12 @@ class Bucheron_C(pygame.sprite.Sprite) :
 
 
     def move_player(self) :
+        print("Test mov_player !")
         if self.game.player.direction == "D" :
-            self.rect.x = self.rect.x - self.vitesse
-        if self.game.player.direction == "G" :
             self.rect.x = self.rect.x + self.vitesse
+        if self.game.player.direction == "G" :
+            self.rect.x = self.rect.x - self.vitesse
         if self.game.player.direction == "H" :
-            self.rect.y = self.rect.y + self.vitesse
-        if self.game.player.direction == "B" :
             self.rect.y = self.rect.y - self.vitesse
+        if self.game.player.direction == "B" :
+            self.rect.y = self.rect.y + self.vitesse

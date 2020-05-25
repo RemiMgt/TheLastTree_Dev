@@ -1,5 +1,6 @@
 #Impotations :
 import pygame
+import time
 from pygame.locals import *
 from random import *
 
@@ -11,6 +12,20 @@ pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
 
 game = Game()
+
+#Bucheron random :
+bucheron_random = randint(1, 100)
+
+#Passage niveaus :
+passage_niveau2 = False
+passage_niveau3 = False
+passage_niveau4 = False
+passage_niveau5 = False
+passage_niveau6 = False
+passage_niveau7 = False
+passage_niveau8 = False
+passage_niveau9 = False
+passage_niveau10 = False
 
 #Couleurs :
 white = (255, 255, 255)
@@ -42,6 +57,10 @@ bas = pygame.K_s
 droite = pygame.K_d
 gauche = pygame.K_a
 attack = pygame.K_SPACE
+
+#Timer :
+timer = 30
+pygame.time.set_timer(pygame.USEREVENT, 1000)
 
 #Titre jeux :
 texte_titre1 = arial_font_grand.render("T", True, vert_titre)
@@ -100,9 +119,8 @@ texte_niveau2 = arial_font_niveau.render("Niveau2", True, orange)
 texte_niveau3 = arial_font_niveau.render("Niveau3", True, orange)
 texte_infini = arial_font_niveau.render("Infini", True, orange)
 texte_attack = arial_font_grand.render(chr(attack), True, red)
-texte_nombre_kill_restant = arial_font_moyen.render(str(game.nombre_kill_restant), True, red)
-texte_ton_score = arial_font_moyen.render("Ton score : ", True, noir)
 texte_retour_menu_fin = arial_font_moyen.render("Menu", True, marron)
+texte_timer = arial_font_moyen.render(str(timer), True, red)
 
 #Rect :
 rectBouton_play = bouton_play.get_rect()
@@ -186,13 +204,13 @@ rectCommands_wasd = commands_wasd.get_rect()
 rectCommands_wasd.x = 1260
 rectCommands_wasd.y = 550
 
-rectScore = texte_nombre_kill_restant.get_rect()
-rectScore.x = 20
-rectScore.y = 20
-
 rectFin_jeux = fin_jeux.get_rect()
 rectFin_jeux.x = 230
 rectFin_jeux.y = 0
+
+rectTexte_timer = texte_timer.get_rect()
+rectTexte_timer.x = 20
+rectTexte_timer.y = 20
 
 #Fonction du menu:
 def menu() :
@@ -298,11 +316,61 @@ def niveau1() :
 
 
 def niveau2() :
+    game.bucheron_H.vitesse = 9
+    game.bucheron_C.vitesse = 9
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
     fenetre.blit(game.player.image, game.player.rect)
 
 def niveau3() :
+    game.bucheron_H.vitesse = 10
+    game.bucheron_C.vitesse = 10
+    fenetre.blit(game.map.image, game.map.rect)
+    fenetre.blit(game.arbre.image, game.arbre.rect)
+    fenetre.blit(game.player.image, game.player.rect)
+
+def niveau4() :
+    game.bucheron_H.vitesse = 11
+    game.bucheron_C.vitesse = 11
+    fenetre.blit(game.map.image, game.map.rect)
+    fenetre.blit(game.arbre.image, game.arbre.rect)
+    fenetre.blit(game.player.image, game.player.rect)
+
+
+def niveau5() :
+    game.bucheron_H.vitesse = 12
+    game.bucheron_C.vitesse = 12
+    fenetre.blit(game.map.image, game.map.rect)
+    fenetre.blit(game.arbre.image, game.arbre.rect)
+    fenetre.blit(game.player.image, game.player.rect)
+
+def niveau6()) :
+    bucheron_random = randint(1, 90)
+    fenetre.blit(game.map.image, game.map.rect)
+    fenetre.blit(game.arbre.image, game.arbre.rect)
+    fenetre.blit(game.player.image, game.player.rect)
+
+def niveau7() :
+    bucheron_random = randint(1, 80)
+    fenetre.blit(game.map.image, game.map.rect)
+    fenetre.blit(game.arbre.image, game.arbre.rect)
+    fenetre.blit(game.player.image, game.player.rect)
+
+
+def niveau8() :
+    bucheron_random = randint(1, 70)
+    fenetre.blit(game.map.image, game.map.rect)
+    fenetre.blit(game.arbre.image, game.arbre.rect)
+    fenetre.blit(game.player.image, game.player.rect)
+
+def niveau9() :
+    bucheron_random = randint(1, 60)
+    fenetre.blit(game.map.image, game.map.rect)
+    fenetre.blit(game.arbre.image, game.arbre.rect)
+    fenetre.blit(game.player.image, game.player.rect)
+
+def niveau10() :
+    bucheron_random = randint(1, 50)
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
     fenetre.blit(game.player.image, game.player.rect)
@@ -370,11 +438,6 @@ def help() :
 def fin_de_jeux() :
     fenetre.blit(menu_fin_jeux, (0, 0))
     fenetre.blit(fin_jeux, rectFin_jeux)
-    texte_score = arial_font.render(str(game.nombre_kill_restant), True, red)
-    rectScore.x = 785
-    rectScore.y = 372
-    fenetre.blit(texte_score, rectScore)
-    fenetre.blit(texte_ton_score, (650, 255))
     fenetre.blit(bouton_retour_menu_fin, (670, 450))
     fenetre.blit(texte_retour_menu_fin, (715, 475))
 
@@ -392,9 +455,10 @@ def exit_game() :
 boucle = True
 while boucle == True :
 
+    print(timer)
+
     #print(game.score)
     x, y = pygame.mouse.get_pos()
-    bucheron_random = randint(1, 100)
     game.arbre.rect.x = game.map.rect.x + 1490
     game.arbre.rect.y = game.map.rect.y + 1490
 
@@ -405,12 +469,16 @@ while boucle == True :
         '''Clavier : '''
         if game.pressed.get(haut) == True and game.map.rect.y < -10:
             game.player.move_haut()
+            game.player.animation_haut()
         if game.pressed.get(bas) == True and game.map.rect.y > -2080:
             game.player.move_bas()
+            game.player.animation_bas()
         if game.pressed.get(droite) == True and game.map.rect.x > -1380:
             game.player.move_droite()
+            game.player.animation_droite()
         if game.pressed.get(gauche) == True and game.map.rect.x < 0:
             game.player.move_gauche()
+            game.player.animation_gauche()
 
     if stat == "menu" :
         menu()
@@ -426,6 +494,27 @@ while boucle == True :
 
     if stat == "niveau3" :
         niveau3()
+
+    if stat == "niveau4" :
+        niveau4()
+
+    if stat == "niveau5" :
+        niveau5()
+
+    if stat == "niveau6" :
+        niveau6()
+
+    if stat == "niveau7" :
+        niveau7()
+
+    if stat == "niveau8" :
+        niveau8()
+
+    if stat == "niveau9" :
+        niveau9()
+
+    if stat == "niveau10" :
+        niveau10()
 
     if stat == "infinity" :
         infinity()
@@ -446,8 +535,8 @@ while boucle == True :
         fin_de_jeux()
 
     if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "infinity" :
-        texte_score = arial_font_moyen.render(str(game.nombre_kill_restant), True, red)
-        fenetre.blit(texte_score, rectScore)
+        fenetre.blit(texte_timer, rectTexte_timer)
+        texte_timer = arial_font_moyen.render(str(timer), True, red)
         if game.GAME_OVER == False :
             if bucheron_random == 40 :
                 game.ajout_bucheron_H()
@@ -524,6 +613,9 @@ while boucle == True :
         if event.type == JOYBUTTONUP :
             game.pressed[event.button] = False
 
+        if event.type == pygame.USEREVENT :
+            timer -= 1
+
 
         if event.type == pygame.KEYDOWN :
             if event.key == pygame.K_ESCAPE :
@@ -566,15 +658,19 @@ while boucle == True :
                 if x >= 90 and x <= 311 and y >= 660 and y <= 770 :
                     stat = "menu"
                 if x >= 60 and x <= 460 and y >= 100 and y <= 300 :
+                    timer = 30
                     pygame.mixer.music.pause()
                     stat = "niveau1"
                 if x >= 1130 and x <= 1530 and y >= 100 and y <= 300 :
+                    timer = 30
                     pygame.mixer.music.pause()
                     stat = "niveau2"
                 if x >= 597 and x <= 997 and y >= 100 and y <= 300 :
+                    timer = 30
                     pygame.mixer.music.pause()
                     stat = "niveau3"
                 if x >= 597 and x <= 997 and y >= 400 and y <= 600 :
+                    timer = 30
                     pygame.mixer.music.pause()
                     stat = "infinity"
             elif stat == "commands" or stat == "help":
@@ -617,9 +713,6 @@ while boucle == True :
                 if x >= 681 and x <= 960 and y >= 460 and y <= 560 :
                     game.GAME_OVER = False
                     stat = "menu"
-                    game.nombre_kill_restant = 30
-                    rectScore.x = 20
-                    rectScore.y = 20
                     game.map.rect.x = -1050
                     game.map.rect.y = -700
                     game.player.rect.x = 740
