@@ -34,6 +34,7 @@ noir = (0, 0, 0)
 marron = (98, 55, 26)
 vert_titre = (12, 50, 2)
 orange = (187, 109, 28)
+gris = (117, 117, 117)
 
 #Variables :
 bucheron_random = 1
@@ -114,13 +115,21 @@ texte_credits_nom_creator = arial_font_petit_credits.render("Rémi MAIGROT", Tru
 texte_credits_nom_designer = arial_font_petit_credits.render("Damien Barthe", True, noir)
 texte_credits_damien = arial_font_credits.render("Illustrations :", True, noir)
 texte_credits = arial_font_brouillon.render("Credits : ", True, red)
-texte_niveau1 = arial_font_niveau.render("Niveau1", True, orange)
-texte_niveau2 = arial_font_niveau.render("Niveau2", True, orange)
-texte_niveau3 = arial_font_niveau.render("Niveau3", True, orange)
-texte_infini = arial_font_niveau.render("Infini", True, orange)
 texte_attack = arial_font_grand.render(chr(attack), True, red)
 texte_retour_menu_fin = arial_font_moyen.render("Menu", True, marron)
 texte_timer = arial_font_moyen.render(str(timer), True, red)
+
+texte_niveau1 = arial_font_niveau.render("Niveau1", True, orange)
+texte_niveau2 = arial_font_niveau.render("Niveau2", True, gris)
+texte_niveau3 = arial_font_niveau.render("Niveau3", True, gris)
+texte_niveau4 = arial_font_niveau.render("Niveau4", True, gris)
+texte_niveau5 = arial_font_niveau.render("Niveau5", True, gris)
+texte_niveau6 = arial_font_niveau.render("Niveau6", True, gris)
+texte_niveau7 = arial_font_niveau.render("Niveau7", True, gris)
+texte_niveau8 = arial_font_niveau.render("Niveau8", True, gris)
+texte_niveau9 = arial_font_niveau.render("Niveau9", True, gris)
+texte_niveau10 = arial_font_niveau.render("Niveau10", True, gris)
+texte_infini = arial_font_niveau.render("Infini", True, orange)
 
 #Rect :
 rectBouton_play = bouton_play.get_rect()
@@ -180,19 +189,6 @@ rectBulle.y = 300
 rectBouton_retour_help_option = bouton_retour_help_option.get_rect()
 rectBouton_retour_help_option.x = -64
 rectBouton_retour_help_option.y = 580
-
-rectBouton_niveau1 = bouton_niveau1.get_rect()
-rectBouton_niveau1.x = 60
-rectBouton_niveau1.y = 100
-rectBouton_niveau2 = bouton_niveau2.get_rect()
-rectBouton_niveau2.x = 597
-rectBouton_niveau2.y = 100
-rectBouton_niveau3 = bouton_niveau3.get_rect()
-rectBouton_niveau3.x = 1130
-rectBouton_niveau3.y = 100
-rectBouton_infinity = bouton_infinity.get_rect()
-rectBouton_infinity.x = 597
-rectBouton_infinity.y = 400
 
 rectCommands_fleche = commands_fleche.get_rect()
 rectCommands_fleche.x = 1260
@@ -260,14 +256,28 @@ def jeux() :
     fenetre.blit(fond_ecran_niveau, (0, 0))
     fenetre.blit(bouton_retour_menu, rectBouton_retour_menu)
     fenetre.blit(texte_retour_menu, rectTexte_retour_menu)
-    fenetre.blit(bouton_niveau1, rectBouton_niveau1)
-    fenetre.blit(bouton_niveau2, rectBouton_niveau2)
-    fenetre.blit(bouton_niveau3, rectBouton_niveau3)
-    fenetre.blit(bouton_infinity, rectBouton_infinity)
-    fenetre.blit(texte_niveau1, (140, 160))
-    fenetre.blit(texte_niveau2, (675, 160))
-    fenetre.blit(texte_niveau3, (1210, 160))
-    fenetre.blit(texte_infini, (720, 460))
+    fenetre.blit(bouton_niveau1, (90, 80))
+    fenetre.blit(bouton_niveau2, (625, 80))
+    fenetre.blit(bouton_niveau3, (1160, 80))
+    fenetre.blit(bouton_niveau4, (90, 280))
+    fenetre.blit(bouton_niveau5, (625, 280))
+    fenetre.blit(bouton_niveau6, (1160, 280))
+    fenetre.blit(bouton_niveau7, (90, 480))
+    fenetre.blit(bouton_niveau8, (625, 480))
+    fenetre.blit(bouton_niveau9, (1160, 480))
+    fenetre.blit(bouton_niveau10, (625, 680))
+    fenetre.blit(bouton_infinity, (1160, 680))
+    fenetre.blit(texte_niveau1, (140, 120))
+    fenetre.blit(texte_niveau2, (675, 120))
+    fenetre.blit(texte_niveau3, (1210, 120))
+    fenetre.blit(texte_niveau4, (140, 320))
+    fenetre.blit(texte_niveau5, (675, 320))
+    fenetre.blit(texte_niveau6, (1210, 320))
+    fenetre.blit(texte_niveau7, (140, 520))
+    fenetre.blit(texte_niveau8, (675, 520))
+    fenetre.blit(texte_niveau9, (1210, 520))
+    fenetre.blit(texte_niveau10, (675, 720))
+    fenetre.blit(texte_infini, (1210, 720))
 
     if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
         rectBouton_retour_menu.x = -39
@@ -281,32 +291,34 @@ def jeux() :
         rectTexte_retour_menu.y = 705
 
     if x >= 60 and x <= 460 and y >= 100 and y <= 300 :
-        fenetre.blit(bouton2_niveau1, (60, 100))
-        fenetre.blit(texte_niveau1, (140, 160))
+        fenetre.blit(bouton2_niveau1, (90, 80))
+        fenetre.blit(texte_niveau1, (140, 120))
     else :
-        fenetre.blit(bouton_niveau1, rectBouton_niveau1)
-        fenetre.blit(texte_niveau1, (140, 160))
+        fenetre.blit(bouton_niveau1, (90, 80))
+        fenetre.blit(texte_niveau1, (140, 120))
 
-    if x >= 597 and x <= 997 and y >= 100 and y <= 300 :
-        fenetre.blit(bouton2_niveau2, (597, 100))
-        fenetre.blit(texte_niveau2, (675, 160))
-    else :
-        fenetre.blit(bouton_niveau2, rectBouton_niveau2)
-        fenetre.blit(texte_niveau2, (675, 160))
+    if passage_niveau2 == True :
+        if x >= 597 and x <= 997 and y >= 100 and y <= 300 :
+            fenetre.blit(bouton2_niveau2, (597, 100))
+            fenetre.blit(texte_niveau2, (675, 160))
+        else :
+            fenetre.blit(bouton_niveau2, (1000, 0))
+            fenetre.blit(texte_niveau2, (675, 160))
 
-    if x >= 1130 and x <= 1530 and y >= 100 and y <= 300 :
-        fenetre.blit(bouton2_niveau3, (1130, 100))
-        fenetre.blit(texte_niveau3, (1210, 160))
-    else :
-        fenetre.blit(bouton_niveau3, rectBouton_niveau3)
-        fenetre.blit(texte_niveau3, (1210, 160))
+    if passage_niveau3 == True :
+        if x >= 1130 and x <= 1530 and y >= 100 and y <= 300 :
+            fenetre.blit(bouton2_niveau3, (1130, 100))
+            fenetre.blit(texte_niveau3, (1210, 160))
+        else :
+            fenetre.blit(bouton_niveau3, (1000, 0))
+            fenetre.blit(texte_niveau3, (1210, 160))
 
     if x >= 597 and x <= 997 and y >= 400 and y <= 600 :
-        fenetre.blit(bouton2_niveau_infi, (597, 400))
-        fenetre.blit(texte_infini, (720, 460))
+        fenetre.blit(bouton2_niveau_infi, (1160, 680))
+        fenetre.blit(texte_infini, (1210, 720))
     else :
-        fenetre.blit(bouton_infinity, rectBouton_infinity)
-        fenetre.blit(texte_infini, (720, 460))
+        fenetre.blit(bouton_infinity, (1160, 680))
+        fenetre.blit(texte_infini, (1210, 720))
 
 
 def niveau1() :
@@ -344,7 +356,7 @@ def niveau5() :
     fenetre.blit(game.arbre.image, game.arbre.rect)
     fenetre.blit(game.player.image, game.player.rect)
 
-def niveau6()) :
+def niveau6() :
     bucheron_random = randint(1, 90)
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
@@ -455,14 +467,14 @@ def exit_game() :
 boucle = True
 while boucle == True :
 
-    print(timer)
+    #print(timer)
 
     #print(game.score)
     x, y = pygame.mouse.get_pos()
     game.arbre.rect.x = game.map.rect.x + 1490
     game.arbre.rect.y = game.map.rect.y + 1490
 
-    if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "infinity":
+    if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "niveau4" or stat == "niveau5" or stat == "niveau6" or stat == "niveau7" or stat == "niveau8" or stat == "niveau9" or stat == "niveau10" or stat == "infinity":
         #Player :
         fenetre.blit(game.player.image, game.player.rect)
         #Déplacements player :
@@ -661,14 +673,16 @@ while boucle == True :
                     timer = 30
                     pygame.mixer.music.pause()
                     stat = "niveau1"
-                if x >= 1130 and x <= 1530 and y >= 100 and y <= 300 :
-                    timer = 30
-                    pygame.mixer.music.pause()
-                    stat = "niveau2"
-                if x >= 597 and x <= 997 and y >= 100 and y <= 300 :
-                    timer = 30
-                    pygame.mixer.music.pause()
-                    stat = "niveau3"
+                if passage_niveau2 == True :
+                    if x >= 1130 and x <= 1530 and y >= 100 and y <= 300 :
+                        timer = 30
+                        pygame.mixer.music.pause()
+                        stat = "niveau2"
+                if passage_niveau3 == True :
+                    if x >= 597 and x <= 997 and y >= 100 and y <= 300 :
+                        timer = 30
+                        pygame.mixer.music.pause()
+                        stat = "niveau3"
                 if x >= 597 and x <= 997 and y >= 400 and y <= 600 :
                     timer = 30
                     pygame.mixer.music.pause()
