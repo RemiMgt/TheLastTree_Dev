@@ -13,6 +13,9 @@ pygame.init()
 
 game = Game()
 
+#Statue niveau :
+stat_niveau = "niveau1"
+
 #Bucheron random :
 bucheron_random = randint(1, 100)
 
@@ -279,6 +282,7 @@ def jeux() :
     fenetre.blit(texte_niveau10, (675, 720))
     fenetre.blit(texte_infini, (1210, 720))
 
+
     if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
         rectBouton_retour_menu.x = -39
         rectBouton_retour_menu.y = 555
@@ -289,37 +293,6 @@ def jeux() :
         rectBouton_retour_menu.y = 580
         rectTexte_retour_menu.x = 115
         rectTexte_retour_menu.y = 705
-
-    if x >= 60 and x <= 460 and y >= 100 and y <= 300 :
-        fenetre.blit(bouton2_niveau1, (90, 80))
-        fenetre.blit(texte_niveau1, (140, 120))
-    else :
-        fenetre.blit(bouton_niveau1, (90, 80))
-        fenetre.blit(texte_niveau1, (140, 120))
-
-    if passage_niveau2 == True :
-        if x >= 597 and x <= 997 and y >= 100 and y <= 300 :
-            fenetre.blit(bouton2_niveau2, (597, 100))
-            fenetre.blit(texte_niveau2, (675, 160))
-        else :
-            fenetre.blit(bouton_niveau2, (1000, 0))
-            fenetre.blit(texte_niveau2, (675, 160))
-
-    if passage_niveau3 == True :
-        if x >= 1130 and x <= 1530 and y >= 100 and y <= 300 :
-            fenetre.blit(bouton2_niveau3, (1130, 100))
-            fenetre.blit(texte_niveau3, (1210, 160))
-        else :
-            fenetre.blit(bouton_niveau3, (1000, 0))
-            fenetre.blit(texte_niveau3, (1210, 160))
-
-    if x >= 597 and x <= 997 and y >= 400 and y <= 600 :
-        fenetre.blit(bouton2_niveau_infi, (1160, 680))
-        fenetre.blit(texte_infini, (1210, 720))
-    else :
-        fenetre.blit(bouton_infinity, (1160, 680))
-        fenetre.blit(texte_infini, (1210, 720))
-
 
 def niveau1() :
     fenetre.blit(game.map.image, game.map.rect)
@@ -348,7 +321,6 @@ def niveau4() :
     fenetre.blit(game.arbre.image, game.arbre.rect)
     fenetre.blit(game.player.image, game.player.rect)
 
-
 def niveau5() :
     game.bucheron_H.vitesse = 12
     game.bucheron_C.vitesse = 12
@@ -357,32 +329,27 @@ def niveau5() :
     fenetre.blit(game.player.image, game.player.rect)
 
 def niveau6() :
-    bucheron_random = randint(1, 90)
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
     fenetre.blit(game.player.image, game.player.rect)
 
 def niveau7() :
-    bucheron_random = randint(1, 80)
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
     fenetre.blit(game.player.image, game.player.rect)
 
 
 def niveau8() :
-    bucheron_random = randint(1, 70)
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
     fenetre.blit(game.player.image, game.player.rect)
 
 def niveau9() :
-    bucheron_random = randint(1, 60)
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
     fenetre.blit(game.player.image, game.player.rect)
 
 def niveau10() :
-    bucheron_random = randint(1, 50)
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
     fenetre.blit(game.player.image, game.player.rect)
@@ -447,11 +414,17 @@ def help() :
         rectTexte_retour_option.x = 115
         rectTexte_retour_option.y = 705
 
-def fin_de_jeux() :
+def fin_de_jeux_gagne() :
     fenetre.blit(menu_fin_jeux, (0, 0))
     fenetre.blit(fin_jeux, rectFin_jeux)
-    fenetre.blit(bouton_retour_menu_fin, (670, 450))
-    fenetre.blit(texte_retour_menu_fin, (715, 475))
+    fenetre.blit(bouton_niveau_suivant, (830, 250))
+    fenetre.blit(bouton_menu, (820, 400))
+
+def fin_de_jeux_perdu() :
+    fenetre.blit(menu_fin_jeux, (0, 0))
+    fenetre.blit(fin_jeux, rectFin_jeux)
+    fenetre.blit(bouton_retry, (830, 250))
+    fenetre.blit(bouton_menu, (820, 400))
 
 def exit_game() :
     print("Fermeture du projet !")
@@ -466,11 +439,14 @@ def exit_game() :
 #Boucle de jeux :
 boucle = True
 while boucle == True :
-
     #print(timer)
+
+    if stat == "menu" or stat == "jeux" or stat == "option" or stat == "commands" or stat == "help" : 
+        timer = -100
 
     #print(game.score)
     x, y = pygame.mouse.get_pos()
+    print(x, y)
     game.arbre.rect.x = game.map.rect.x + 1490
     game.arbre.rect.y = game.map.rect.y + 1490
 
@@ -496,39 +472,61 @@ while boucle == True :
         menu()
 
     if stat == "jeux" :
+        bouton_niveau2 = pygame.transform.scale(bouton_niveau2, (350, 150))
         jeux()
 
     if stat == "niveau1" :
+        stat_niveau = "niveau1"
+        bucheron_random = randint(1, 100)
         niveau1()
 
     if stat == "niveau2" :
+        stat_niveau = "niveau2"
+        bucheron_random = randint(1, 100)
         niveau2()
 
     if stat == "niveau3" :
+        stat_niveau = "niveau3"
+        bucheron_random = randint(1, 100)
         niveau3()
 
     if stat == "niveau4" :
+        stat_niveau = "niveau4"
+        bucheron_random = randint(1, 100)
         niveau4()
 
     if stat == "niveau5" :
+        stat_niveau = "niveau5"
+        bucheron_random = randint(1, 100)
         niveau5()
 
     if stat == "niveau6" :
+        stat_niveau = "niveau6"
+        bucheron_random = randint(1, 90)
         niveau6()
 
     if stat == "niveau7" :
+        stat_niveau = "niveau7"
+        bucheron_random = randint(1, 80)
         niveau7()
 
     if stat == "niveau8" :
+        stat_niveau = "niveau8"
+        bucheron_random = randint(1, 70)
         niveau8()
 
     if stat == "niveau9" :
+        stat_niveau = "niveau9"
+        bucheron_random = randint(1, 60)
         niveau9()
 
     if stat == "niveau10" :
+        stat_niveau = "niveau10"
+        bucheron_random = randint(1, 50)
         niveau10()
 
     if stat == "infinity" :
+        bucheron_random = randint(1, 40)
         infinity()
 
     if stat == "option" :
@@ -543,16 +541,19 @@ while boucle == True :
     if stat == "help" :
         help()
 
-    if stat == "fin_jeux" :
-        fin_de_jeux()
+    if stat == "fin_jeux_gagne" :
+        fin_de_jeux_gagne()
 
-    if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "infinity" :
+    if stat == "fin_jeux_perdu" :
+        fin_de_jeux_perdu()
+
+    if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "niveau4" or stat == "niveau5" or stat == "niveau6" or stat == "niveau7" or stat == "niveau8" or stat == "niveau9" or stat == "niveau10" or stat == "infinity":
         fenetre.blit(texte_timer, rectTexte_timer)
         texte_timer = arial_font_moyen.render(str(timer), True, red)
         if game.GAME_OVER == False :
             if bucheron_random == 40 :
                 game.ajout_bucheron_H()
-            if bucheron_random == 50 :
+            if bucheron_random == 30 :
                 game.ajout_bucheron_C()
 
     #Projectile :
@@ -569,22 +570,30 @@ while boucle == True :
     game.all_bucheron_H.draw(fenetre)
     game.all_bucheron_C.draw(fenetre)
 
-    if game.nombre_kill_restant == 0 :
+    if timer == 0 :
         print("Gagné !")
+        game.all_bucheron_C.empty()
+        game.all_bucheron_H.empty()
+        game.all_projectile.empty()
         #Changer texte en perdu
-        stat = "fin_jeux"
+        stat = "fin_jeux_gagne"
         pygame.mixer.music.unpause()
 
     if game.GAME_OVER == True :
+        timer = -5
         print("Perdu !")
-        #Changer texte en gagner
-        stat = "fin_jeux"
+        stat = "fin_jeux_perdu"
         pygame.mixer.music.unpause()
 
     if stat == "commands" :
         texte_attack = arial_font_grand.render(chr(attack), True, red)
         fenetre.blit(texte_attack, (10, 10))
         #print(chr(attack))
+
+    #Textes et boutons UP :
+    if passage_niveau2 == True :
+        bouton_niveau2 = pygame.image.load("assets/bouton_niveau.png")
+        texte_niveau2 = arial_font_niveau.render("Niveau2", True, orange)
 
     #Flip :
     pygame.display.flip()
@@ -669,7 +678,7 @@ while boucle == True :
             elif stat == "jeux" :
                 if x >= 90 and x <= 311 and y >= 660 and y <= 770 :
                     stat = "menu"
-                if x >= 60 and x <= 460 and y >= 100 and y <= 300 :
+                if x >= 90 and x <= 440 and y >= 79 and y <= 230 :
                     timer = 30
                     pygame.mixer.music.pause()
                     stat = "niveau1"
@@ -723,14 +732,124 @@ while boucle == True :
                     rectCommands_fleche.y = 150
                     rectCommands_zqsd.x = 1260
                     rectCommands_zqsd.y = 350
-            elif stat == "fin_jeux" :
-                if x >= 681 and x <= 960 and y >= 460 and y <= 560 :
+            elif stat == "fin_jeux_gagne" :
+                    if stat_niveau == "niveau1" :
+                        passage_niveau2 = True
+                    if stat_niveau == "niveau2" :
+                        passage_niveau3 = True
+                    if stat_niveau == "niveau3" :
+                        passage_niveau4 = True
+                    if stat_niveau == "niveau4" :
+                        passage_niveau5 = True
+                    if stat_niveau == "niveau5" :
+                        passage_niveau6 = True
+                    if stat_niveau == "niveau6" :
+                        passage_niveau7 = True
+                    if stat_niveau == "niveau7" :
+                        passage_niveau8 = True
+                    if stat_niveau == "niveau8" :
+                        passage_niveau9 = True
+                    if stat_niveau == "niveau9" :
+                        passage_niveau10 = True
                     game.GAME_OVER = False
-                    stat = "menu"
                     game.map.rect.x = -1050
                     game.map.rect.y = -700
                     game.player.rect.x = 740
                     game.player.rect.y = 380
+                    if x >= 830 and x <= 958 and y >= 414 and y <= 534 :
+                        stat = "menu"
+                    if x >= 850 and x <= 952 and y >= 267 and y <= 385 :
+                        if stat_niveau == "niveau1" :
+                            game.GAME_OVER = False
+                            game.map.rect.x = -1050
+                            game.map.rect.y = -700
+                            game.player.rect.x = 740
+                            game.player.rect.y = 380
+                            stat = "niveau2"
+                            timer = 30
+                        if stat_niveau == "niveau2" :
+                            passage_niveau3 = True
+                            game.GAME_OVER = False
+                            game.map.rect.x = -1050
+                            game.map.rect.y = -700
+                            game.player.rect.x = 740
+                            game.player.rect.y = 380
+                            stat = "niveau3"
+                            timer = 30
+                        if stat_niveau == "niveau3" :
+                            passage_niveau4 = True
+                            game.GAME_OVER = False
+                            game.map.rect.x = -1050
+                            game.map.rect.y = -700
+                            game.player.rect.x = 740
+                            game.player.rect.y = 380
+                            stat = "niveau4"
+                            timer = 30
+                        if stat_niveau == "niveau4" :
+                            passage_niveau5 = True
+                            game.GAME_OVER = False
+                            game.map.rect.x = -1050
+                            game.map.rect.y = -700
+                            game.player.rect.x = 740
+                            game.player.rect.y = 380
+                            stat = "niveau5"
+                            timer = 30
+                        if stat_niveau == "niveau5" :
+                            passage_niveau6 = True
+                            game.GAME_OVER = False
+                            game.map.rect.x = -1050
+                            game.map.rect.y = -700
+                            game.player.rect.x = 740
+                            game.player.rect.y = 380
+                            stat = "niveau6"
+                            timer = 30
+                        if stat_niveau == "niveau6" :
+                            passage_niveau7 = True
+                            game.GAME_OVER = False
+                            game.map.rect.x = -1050
+                            game.map.rect.y = -700
+                            game.player.rect.x = 740
+                            game.player.rect.y = 380
+                            stat = "niveau7"
+                            timer = 30
+                        if stat_niveau == "niveau7" :
+                            passage_niveau8 = True
+                            game.GAME_OVER = False
+                            game.map.rect.x = -1050
+                            game.map.rect.y = -700
+                            game.player.rect.x = 740
+                            game.player.rect.y = 380
+                            stat = "niveau8"
+                            timer = 30
+                        if stat_niveau == "niveau8" :
+                            passage_niveau9 = True
+                            game.GAME_OVER = False
+                            game.map.rect.x = -1050
+                            game.map.rect.y = -700
+                            game.player.rect.x = 740
+                            game.player.rect.y = 380
+                            stat = "niveau9"
+                            timer = 30
+                        if stat_niveau == "niveau9" :
+                            passage_niveau10 = True
+                            game.GAME_OVER = False
+                            game.map.rect.x = -1050
+                            game.map.rect.y = -700
+                            game.player.rect.x = 740
+                            game.player.rect.y = 380
+                            stat = "niveau10"
+                            timer = 30
+            elif stat == "fin_jeux_perdu" :
+                    game.GAME_OVER = False
+                    game.map.rect.x = -1050
+                    game.map.rect.y = -700
+                    game.player.rect.x = 740
+                    game.player.rect.y = 380
+                    if x >= 830 and x <= 958 and y >= 414 and y <= 534 :
+                        stat = "menu"
+                    if x >= 830 and x <= 931 and y >= 246 and y <= 350 :
+                        timer = 30
+                        stat = stat_niveau
 
         '''Effet bouton option '''
         if stat == "option" :

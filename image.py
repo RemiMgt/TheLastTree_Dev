@@ -47,6 +47,15 @@ dimension_bouton_retour_menu_width = bouton_retour_menu_fin.get_width()
 dimension_bouton_retour_menu_height = bouton_retour_menu_fin.get_height()
 bouton_retour_menu_fin = pygame.transform.scale(bouton_retour_menu_fin, (300, 120))
 
+bouton_retry = pygame.image.load("assets/bouton_retry.png")
+bouton_retry = pygame.transform.scale(bouton_retry, (100, 100))
+
+bouton_menu = pygame.image.load("assets/bouton_menu.png")
+bouton_menu = pygame.transform.scale(bouton_menu, (150, 150))
+
+bouton_niveau_suivant = pygame.image.load("assets/bouton_niveau_suivant.png")
+bouton_niveau_suivant = pygame.transform.scale(bouton_niveau_suivant, (150, 150))
+
 #Niveau :
 bouton_niveau1 = pygame.image.load("assets/bouton_niveau.png")
 bouton_niveau1 = pygame.transform.scale(bouton_niveau1, (350, 150))
@@ -113,3 +122,31 @@ commands_zqsd = pygame.transform.scale(commands_zqsd, (200, 129))
 
 commands_wasd = pygame.image.load("commands/wasd.png")
 commands_wasd = pygame.transform.scale(commands_wasd, (200, 129))
+
+#Images bouton vraie :
+bouton_niveau2_vrai = pygame.image.load("assets/bouton_niveau.png")
+bouton_niveau2_vrai = pygame.transform.scale(bouton_niveau2_vrai, (350, 150))
+
+bouton_niveau3_vrai = pygame.image.load("assets/bouton_niveau.png")
+bouton_niveau3_vrai = pygame.transform.scale(bouton_niveau3_vrai, (350, 150))
+
+bouton_niveau4_vrai = pygame.image.load("assets/bouton_niveau.png")
+bouton_niveau4_vrai = pygame.transform.scale(bouton_niveau4_vrai, (350, 150))
+
+bouton_niveau5_vrai = pygame.image.load("assets/bouton_niveau.png")
+bouton_niveau5_vrai = pygame.transform.scale(bouton_niveau5_vrai, (350, 150))
+
+bouton_niveau6_vrai = pygame.image.load("assets/bouton_niveau.png")
+bouton_niveau6_vrai = pygame.transform.scale(bouton_niveau6_vrai, (350, 150))
+
+bouton_niveau7_vrai = pygame.image.load("assets/bouton_niveau.png")
+bouton_niveau7_vrai = pygame.transform.scale(bouton_niveau7_vrai, (350, 150))
+
+bouton_niveau8_vrai = pygame.image.load("assets/bouton_niveau.png")
+bouton_niveau8_vrai = pygame.transform.scale(bouton_niveau8_vrai, (350, 150))
+
+bouton_niveau9_vrai = pygame.image.load("assets/bouton_niveau.png")
+bouton_niveau9_vrai = pygame.transform.scale(bouton_niveau9_vrai, (350, 150))
+
+bouton_niveau10_vrai = pygame.image.load("assets/bouton_niveau.png")
+bouton_niveau10_vrai = pygame.transform.scale(bouton_niveau10_vrai, (350, 150))
