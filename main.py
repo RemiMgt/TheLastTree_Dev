@@ -132,7 +132,7 @@ texte_niveau7 = arial_font_niveau.render("Niveau7", True, gris)
 texte_niveau8 = arial_font_niveau.render("Niveau8", True, gris)
 texte_niveau9 = arial_font_niveau.render("Niveau9", True, gris)
 texte_niveau10 = arial_font_niveau.render("Niveau10", True, gris)
-texte_infini = arial_font_niveau.render("Infini", True, orange)
+texte_infini = arial_font_niveau.render("No Time Limit", True, orange)
 
 #Rect :
 rectBouton_play = bouton_play.get_rect()
@@ -473,6 +473,14 @@ while boucle == True :
 
     if stat == "jeux" :
         bouton_niveau2 = pygame.transform.scale(bouton_niveau2, (350, 150))
+        bouton_niveau3 = pygame.transform.scale(bouton_niveau3, (350, 150))
+        bouton_niveau4 = pygame.transform.scale(bouton_niveau4, (350, 150))
+        bouton_niveau5 = pygame.transform.scale(bouton_niveau5, (350, 150))
+        bouton_niveau6 = pygame.transform.scale(bouton_niveau6, (350, 150))
+        bouton_niveau7 = pygame.transform.scale(bouton_niveau7, (350, 150))
+        bouton_niveau8 = pygame.transform.scale(bouton_niveau8, (350, 150))
+        bouton_niveau9 = pygame.transform.scale(bouton_niveau9, (350, 150))
+        bouton_niveau10 = pygame.transform.scale(bouton_niveau10, (350, 150))
         jeux()
 
     if stat == "niveau1" :
@@ -594,6 +602,30 @@ while boucle == True :
     if passage_niveau2 == True :
         bouton_niveau2 = pygame.image.load("assets/bouton_niveau.png")
         texte_niveau2 = arial_font_niveau.render("Niveau2", True, orange)
+    if passage_niveau3 == True :
+        bouton_niveau3 = pygame.image.load("assets/bouton_niveau.png")
+        texte_niveau3 = arial_font_niveau.render("Niveau3", True, orange)
+    if passage_niveau4 == True :
+        bouton_niveau4 = pygame.image.load("assets/bouton_niveau.png")
+        texte_niveau4 = arial_font_niveau.render("Niveau4", True, orange)
+    if passage_niveau5 == True :
+        bouton_niveau5 = pygame.image.load("assets/bouton_niveau.png")
+        texte_niveau5 = arial_font_niveau.render("Niveau5", True, orange)
+    if passage_niveau6 == True :
+        bouton_niveau6 = pygame.image.load("assets/bouton_niveau.png")
+        texte_niveau6 = arial_font_niveau.render("Niveau6", True, orange)
+    if passage_niveau7 == True :
+        bouton_niveau7 = pygame.image.load("assets/bouton_niveau.png")
+        texte_niveau7 = arial_font_niveau.render("Niveau7", True, orange)
+    if passage_niveau8 == True :
+        bouton_niveau8 = pygame.image.load("assets/bouton_niveau.png")
+        texte_niveau8 = arial_font_niveau.render("Niveau8", True, orange)
+    if passage_niveau9 == True :
+        bouton_niveau9 = pygame.image.load("assets/bouton_niveau.png")
+        texte_niveau9 = arial_font_niveau.render("Niveau9", True, orange)
+    if passage_niveau10 == True :
+        bouton_niveau10 = pygame.image.load("assets/bouton_niveau.png")
+        texte_niveau10 = arial_font_niveau.render("Niveau10", True, orange)
 
     #Flip :
     pygame.display.flip()
@@ -679,20 +711,55 @@ while boucle == True :
                 if x >= 90 and x <= 311 and y >= 660 and y <= 770 :
                     stat = "menu"
                 if x >= 90 and x <= 440 and y >= 79 and y <= 230 :
-                    timer = 30
+                    timer = 2
                     pygame.mixer.music.pause()
                     stat = "niveau1"
                 if passage_niveau2 == True :
-                    if x >= 1130 and x <= 1530 and y >= 100 and y <= 300 :
+                    if x >= 627 and x <= 974 and y >= 80 and y <= 223 :
                         timer = 30
                         pygame.mixer.music.pause()
                         stat = "niveau2"
                 if passage_niveau3 == True :
-                    if x >= 597 and x <= 997 and y >= 100 and y <= 300 :
+                    if x >= 1159 and x <= 1512 and y >= 80 and y <= 223 :
                         timer = 30
                         pygame.mixer.music.pause()
                         stat = "niveau3"
-                if x >= 597 and x <= 997 and y >= 400 and y <= 600 :
+                if passage_niveau4 == True :
+                    if x >= 91 and x <= 438 and y >= 280 and y <= 427 :
+                        timer = 30
+                        pygame.mixer.music.pause()
+                        stat = "niveau4"
+                if passage_niveau5 == True :
+                    if x >= 627 and x <= 974 and y >= 279 and y <= 424 :
+                        timer = 30
+                        pygame.mixer.music.pause()
+                        stat = "niveau5"
+                if passage_niveau6 == True :
+                    if x >= 1159 and x <= 1512 and y >= 280 and y <= 427 :
+                        timer = 30
+                        pygame.mixer.music.pause()
+                        stat = "niveau6"
+                if passage_niveau7 == True :
+                    if x >= 90 and x <= 442 and y >= 476 and y <= 627 :
+                        timer = 30
+                        pygame.mixer.music.pause()
+                        stat = "niveau7"
+                if passage_niveau8 == True :
+                    if x >= 625 and x <= 974 and y >= 476 and y <= 627 :
+                        timer = 30
+                        pygame.mixer.music.pause()
+                        stat = "niveau8"
+                if passage_niveau9 == True :
+                    if x >= 1159 and x <= 1512 and y >= 476 and y <= 627 :
+                        timer = 30
+                        pygame.mixer.music.pause()
+                        stat = "niveau9"
+                if passage_niveau10 == True :
+                    if x >= 625 and x <= 974 and y >= 680 and y <= 826 :
+                        timer = 30
+                        pygame.mixer.music.pause()
+                        stat = "niveau10"
+                if x >= 625 and x <= 974 and y >= 680 and y <= 826 :
                     timer = 30
                     pygame.mixer.music.pause()
                     stat = "infinity"
