@@ -78,6 +78,9 @@ pygame.mixer.music.load(musique_menu)
 pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play(-1, 0)
 
+#Bruitage click :
+click = pygame.mixer.Sound("assets/bruit-clic.wav")
+
 #Joystik :
 
 joy = "rien"
@@ -468,7 +471,6 @@ while boucle == True :
 
     #print(game.score)
     x, y = pygame.mouse.get_pos()
-    print(x, y)
     game.arbre.rect.x = game.map.rect.x + 1490
     game.arbre.rect.y = game.map.rect.y + 1490
 
@@ -733,7 +735,9 @@ while boucle == True :
             if stat == "commands" :
                 attack = pygame.key.get_pressed()
 
-        if event.type == pygame.MOUSEBUTTONDOWN :
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            print(event.button)
+            #click.play()
             if stat == "option" :
                 if x >= 95 and x <= 238 and y >= 122 and y <= 234 :
                     pygame.mixer.music.unpause()
