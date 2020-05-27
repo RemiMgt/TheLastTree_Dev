@@ -56,6 +56,7 @@ arial_font_petit_credits = pygame.font.SysFont("arial", 30, False, True)
 arial_font_brouillon = pygame.font.SysFont("arial", 40, True, False)
 arial_font_niveau = pygame.font.SysFont("arial", 60, True, False)
 arial_font_score = pygame.font.SysFont("arial", 100, True, False)
+arial_font_giant = pygame.font.SysFont("arial", 300, True, False)
 
 #Commands clavier :
 haut = pygame.K_w
@@ -144,6 +145,8 @@ texte_infini = arial_font_niveau.render("No Time Limit", True, red)
 texte_menu = arial_font_petit.render("Menu", True, marron)
 texte_niveau_suivant = arial_font_petit.render("Niveau suivant", True, marron)
 texte_retry = arial_font_petit.render("Recommencer", True, marron)
+
+texte_the_end = arial_font_giant.render("THE END", True, marron)
 
 #Rect :
 rectBouton_play = bouton_play.get_rect()
@@ -451,6 +454,13 @@ def fin_jeux_infini() :
     fenetre.blit(texte_menu, (740, 460))
     fenetre.blit(texte_retry, (655, 310))
 
+
+def the_end() :
+    fenetre.blit(menu_end, (0, 0))
+    fenetre.blit(texte_the_end, (120, 100))
+    fenetre.blit(bouton_menu, (360, 480))
+    fenetre.blit(texte_menu, (740, 660))
+
 def exit_game() :
     print("Fermeture du projet !")
     boucle = False
@@ -471,6 +481,7 @@ while boucle == True :
 
     #print(game.score)
     x, y = pygame.mouse.get_pos()
+    print(x, y)
     game.arbre.rect.x = game.map.rect.x + 1490
     game.arbre.rect.y = game.map.rect.y + 1490
 
@@ -583,6 +594,9 @@ while boucle == True :
     if stat == "fin_jeux_perdu" :
         fin_de_jeux_perdu()
 
+    if stat == "the_end" :
+        the_end()
+
     if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "niveau4" or stat == "niveau5" or stat == "niveau6" or stat == "niveau7" or stat == "niveau8" or stat == "niveau9" or stat == "niveau10" :
         game.player.image = pygame.transform.scale(game.player.image, (120, 120))
         fenetre.blit(texte_timer, rectTexte_timer)
@@ -674,6 +688,10 @@ while boucle == True :
         bouton_niveau10 = pygame.image.load("assets/bouton_niveau.png")
         texte_niveau10 = arial_font_niveau.render("Niveau10", True, orange)
 
+    if stat == "fin_jeux_gagne" :
+        if stat_niveau == "niveau10" :
+                stat = "the_end"
+
     #Flip :
     pygame.display.flip()
 
@@ -738,6 +756,9 @@ while boucle == True :
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             print(event.button)
             #click.play()
+            if stat == "the_end" :
+                if x >= 598 and x <= 995 and y >= 615 and y <= 756 :
+                    stat = "menu"
             if stat == "option" :
                 if x >= 95 and x <= 238 and y >= 122 and y <= 234 :
                     pygame.mixer.music.unpause()
@@ -765,47 +786,47 @@ while boucle == True :
                     stat = "niveau1"
                 if passage_niveau2 == True :
                     if x >= 627 and x <= 974 and y >= 80 and y <= 223 :
-                        timer = 30
+                        timer = 2
                         pygame.mixer.music.pause()
                         stat = "niveau2"
                 if passage_niveau3 == True :
                     if x >= 1159 and x <= 1512 and y >= 80 and y <= 223 :
-                        timer = 30
+                        timer = 2
                         pygame.mixer.music.pause()
                         stat = "niveau3"
                 if passage_niveau4 == True :
                     if x >= 91 and x <= 438 and y >= 280 and y <= 427 :
-                        timer = 30
+                        timer = 2
                         pygame.mixer.music.pause()
                         stat = "niveau4"
                 if passage_niveau5 == True :
                     if x >= 627 and x <= 974 and y >= 279 and y <= 424 :
-                        timer = 30
+                        timer = 2
                         pygame.mixer.music.pause()
                         stat = "niveau5"
                 if passage_niveau6 == True :
                     if x >= 1159 and x <= 1512 and y >= 280 and y <= 427 :
-                        timer = 30
+                        timer = 2
                         pygame.mixer.music.pause()
                         stat = "niveau6"
                 if passage_niveau7 == True :
                     if x >= 90 and x <= 442 and y >= 476 and y <= 627 :
-                        timer = 30
+                        timer = 2
                         pygame.mixer.music.pause()
                         stat = "niveau7"
                 if passage_niveau8 == True :
                     if x >= 625 and x <= 974 and y >= 476 and y <= 627 :
-                        timer = 30
+                        timer = 2
                         pygame.mixer.music.pause()
                         stat = "niveau8"
                 if passage_niveau9 == True :
                     if x >= 1159 and x <= 1512 and y >= 476 and y <= 627 :
-                        timer = 30
+                        timer = 2
                         pygame.mixer.music.pause()
                         stat = "niveau9"
                 if passage_niveau10 == True :
                     if x >= 625 and x <= 974 and y >= 680 and y <= 826 :
-                        timer = 30
+                        timer = 2
                         pygame.mixer.music.pause()
                         stat = "niveau10"
                 if x >= 1019 and x <= 1568 and y >= 680 and y <= 830 :
@@ -875,6 +896,7 @@ while boucle == True :
                     if x >= 586 and x <= 1016 and y >= 420 and y <= 540 :
                         stat = "menu"
                     if x >= 586 and x <= 1016 and y >= 270 and y <= 388 :
+                        pygame.mixer.music.pause()
                         if stat_niveau == "niveau1" :
                             game.GAME_OVER = False
                             game.map.rect.x = -1050
@@ -882,7 +904,7 @@ while boucle == True :
                             game.player.rect.x = 740
                             game.player.rect.y = 380
                             stat = "niveau2"
-                            timer = 30
+                            timer = 2
                         if stat_niveau == "niveau2" :
                             passage_niveau3 = True
                             game.GAME_OVER = False
@@ -891,7 +913,7 @@ while boucle == True :
                             game.player.rect.x = 740
                             game.player.rect.y = 380
                             stat = "niveau3"
-                            timer = 30
+                            timer = 2
                         if stat_niveau == "niveau3" :
                             passage_niveau4 = True
                             game.GAME_OVER = False
@@ -900,7 +922,7 @@ while boucle == True :
                             game.player.rect.x = 740
                             game.player.rect.y = 380
                             stat = "niveau4"
-                            timer = 30
+                            timer = 2
                         if stat_niveau == "niveau4" :
                             passage_niveau5 = True
                             game.GAME_OVER = False
@@ -909,7 +931,7 @@ while boucle == True :
                             game.player.rect.x = 740
                             game.player.rect.y = 380
                             stat = "niveau5"
-                            timer = 30
+                            timer = 2
                         if stat_niveau == "niveau5" :
                             passage_niveau6 = True
                             game.GAME_OVER = False
@@ -918,7 +940,7 @@ while boucle == True :
                             game.player.rect.x = 740
                             game.player.rect.y = 380
                             stat = "niveau6"
-                            timer = 30
+                            timer = 2
                         if stat_niveau == "niveau6" :
                             passage_niveau7 = True
                             game.GAME_OVER = False
@@ -927,7 +949,7 @@ while boucle == True :
                             game.player.rect.x = 740
                             game.player.rect.y = 380
                             stat = "niveau7"
-                            timer = 30
+                            timer = 2
                         if stat_niveau == "niveau7" :
                             passage_niveau8 = True
                             game.GAME_OVER = False
@@ -936,7 +958,7 @@ while boucle == True :
                             game.player.rect.x = 740
                             game.player.rect.y = 380
                             stat = "niveau8"
-                            timer = 30
+                            timer = 2
                         if stat_niveau == "niveau8" :
                             passage_niveau9 = True
                             game.GAME_OVER = False
@@ -945,7 +967,7 @@ while boucle == True :
                             game.player.rect.x = 740
                             game.player.rect.y = 380
                             stat = "niveau9"
-                            timer = 30
+                            timer = 2
                         if stat_niveau == "niveau9" :
                             passage_niveau10 = True
                             game.GAME_OVER = False
@@ -954,7 +976,7 @@ while boucle == True :
                             game.player.rect.x = 740
                             game.player.rect.y = 380
                             stat = "niveau10"
-                            timer = 30
+                            timer = 2
             elif stat == "fin_jeux_perdu" or stat == "fin_jeux_infinity":
                     game.GAME_OVER = False
                     game.map.rect.x = -1050
@@ -965,7 +987,6 @@ while boucle == True :
                         stat = "menu"
                     if x >= 586 and x <= 1016 and y >= 270 and y <= 388 :
                         pygame.mixer.music.pause()
-                        timer = 30
                         game.nombre_kill = 0
                         stat = stat_niveau
 

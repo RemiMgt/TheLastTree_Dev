@@ -56,6 +56,9 @@ bouton_menu = pygame.transform.scale(bouton_menu, (900, 400))
 bouton_niveau_suivant = pygame.image.load("assets/bouton_play.png")
 bouton_niveau_suivant = pygame.transform.scale(bouton_niveau_suivant, (900, 400))
 
+menu_end = pygame.image.load("assets/end.png")
+menu_end = pygame.transform.scale(menu_end, (1600, 900))
+
 #Niveau :
 bouton_niveau1 = pygame.image.load("assets/bouton_niveau.png")
 bouton_niveau1 = pygame.transform.scale(bouton_niveau1, (350, 150))
