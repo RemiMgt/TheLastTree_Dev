@@ -36,26 +36,20 @@ bouton_retour_help_option = pygame.image.load("assets/bouton_retour.png")
 bouton_retour_help_option = pygame.transform.scale(bouton_retour_help_option, (500, 300))
 fond_ecran_niveau = pygame.image.load("assets/menu_niveau.png")
 fond_ecran_niveau = pygame.transform.scale(fond_ecran_niveau, (1600, 900))
-
 fin_jeux = pygame.image.load("assets/fin_jeux.png")
 fin_jeux = pygame.transform.scale(fin_jeux, (1100, 1100))
 menu_fin_jeux = pygame.image.load("assets/menu_fin_jeux.jpg")
 menu_fin_jeux = pygame.transform.scale(menu_fin_jeux, (1600, 900))
-
 bouton_retour_menu_fin = pygame.image.load("assets/bouton_retour_menu.png")
 dimension_bouton_retour_menu_width = bouton_retour_menu_fin.get_width()
 dimension_bouton_retour_menu_height = bouton_retour_menu_fin.get_height()
 bouton_retour_menu_fin = pygame.transform.scale(bouton_retour_menu_fin, (300, 120))
-
 bouton_retry = pygame.image.load("assets/bouton_play.png")
 bouton_retry = pygame.transform.scale(bouton_retry, (900, 400))
-
 bouton_menu = pygame.image.load("assets/bouton_play.png")
 bouton_menu = pygame.transform.scale(bouton_menu, (900, 400))
-
 bouton_niveau_suivant = pygame.image.load("assets/bouton_play.png")
 bouton_niveau_suivant = pygame.transform.scale(bouton_niveau_suivant, (900, 400))
-
 menu_end = pygame.image.load("assets/end.png")
 menu_end = pygame.transform.scale(menu_end, (1600, 900))
 
@@ -118,10 +112,7 @@ bouton2_niveau_infi = pygame.transform.scale(bouton2_niveau_infi, (400, 200))
 #Commands clavier :
 commands_fleche = pygame.image.load("commands/fleche.png")
 commands_fleche = pygame.transform.scale(commands_fleche, (200, 129))
-
 commands_zqsd = pygame.image.load("commands/zqsd.png")
 commands_zqsd = pygame.transform.scale(commands_zqsd, (200, 129))
-
-
 commands_wasd = pygame.image.load("commands/wasd.png")
 commands_wasd = pygame.transform.scale(commands_wasd, (200, 129))
