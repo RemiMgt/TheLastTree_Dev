@@ -38,12 +38,14 @@ marron = (98, 55, 26)
 vert_titre = (12, 50, 2)
 orange = (187, 109, 28)
 gris = (117, 117, 117)
+infini = (254, 1, 144)
 
 #Variables :
 bucheron_random = 1
 L = 1600
 H = 900
 stat = "menu"
+arial_font_min = pygame.font.SysFont("arial", 20, True, False)
 arial_font = pygame.font.SysFont("arial", 70, True, False)
 arial_font_grand = pygame.font.SysFont("arial", 260, True, False)
 arial_font_petit = pygame.font.SysFont("arial", 38, True, False)
@@ -51,7 +53,7 @@ arial_font_moyen = pygame.font.SysFont("arial", 60, True, False)
 arial_font_moyen_moins = pygame.font.SysFont("arial", 55, True, False)
 arial_font_credits = pygame.font.SysFont("arial", 25, True, False)
 arial_font_petit_credits = pygame.font.SysFont("arial", 30, False, True)
-arial_font_brouillon = pygame.font.SysFont("arial", 85, True, False)
+arial_font_brouillon = pygame.font.SysFont("arial", 40, True, False)
 arial_font_niveau = pygame.font.SysFont("arial", 60, True, False)
 arial_font_score = pygame.font.SysFont("arial", 100, True, False)
 
@@ -117,10 +119,12 @@ texte_credits_remi = arial_font_credits.render("Créateur développeur :", True,
 texte_credits_nom_creator = arial_font_petit_credits.render("Rémi MAIGROT", True, noir)
 texte_credits_nom_designer = arial_font_petit_credits.render("Damien Barthe", True, noir)
 texte_credits_damien = arial_font_credits.render("Illustrations :", True, noir)
-texte_credits = arial_font_brouillon.render("Credits : ", True, red)
+texte_credits = arial_font_brouillon.render("Credits : ", True, white)
 texte_attack = arial_font_grand.render(chr(attack), True, red)
 texte_retour_menu_fin = arial_font_moyen.render("Menu", True, marron)
 texte_timer = arial_font_moyen.render(str(timer), True, red)
+texte_nombre_kill = arial_font_moyen.render(str(game.nombre_kill), True, red)
+texte_score = arial_font_moyen.render("Score", True, noir)
 
 texte_niveau1 = arial_font_niveau.render("Niveau1", True, orange)
 texte_niveau2 = arial_font_niveau.render("Niveau2", True, gris)
@@ -132,7 +136,11 @@ texte_niveau7 = arial_font_niveau.render("Niveau7", True, gris)
 texte_niveau8 = arial_font_niveau.render("Niveau8", True, gris)
 texte_niveau9 = arial_font_niveau.render("Niveau9", True, gris)
 texte_niveau10 = arial_font_niveau.render("Niveau10", True, gris)
-texte_infini = arial_font_niveau.render("No Time Limit", True, orange)
+texte_infini = arial_font_niveau.render("No Time Limit", True, red)
+
+texte_menu = arial_font_petit.render("Menu", True, marron)
+texte_niveau_suivant = arial_font_petit.render("Niveau suivant", True, marron)
+texte_retry = arial_font_petit.render("Recommencer", True, marron)
 
 #Rect :
 rectBouton_play = bouton_play.get_rect()
@@ -269,7 +277,7 @@ def jeux() :
     fenetre.blit(bouton_niveau8, (625, 480))
     fenetre.blit(bouton_niveau9, (1160, 480))
     fenetre.blit(bouton_niveau10, (625, 680))
-    fenetre.blit(bouton_infinity, (1160, 680))
+    fenetre.blit(bouton_infinity, (1020, 680))
     fenetre.blit(texte_niveau1, (140, 120))
     fenetre.blit(texte_niveau2, (675, 120))
     fenetre.blit(texte_niveau3, (1210, 120))
@@ -280,7 +288,7 @@ def jeux() :
     fenetre.blit(texte_niveau8, (675, 520))
     fenetre.blit(texte_niveau9, (1210, 520))
     fenetre.blit(texte_niveau10, (675, 720))
-    fenetre.blit(texte_infini, (1210, 720))
+    fenetre.blit(texte_infini, (1085, 720))
 
 
     if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
@@ -417,14 +425,28 @@ def help() :
 def fin_de_jeux_gagne() :
     fenetre.blit(menu_fin_jeux, (0, 0))
     fenetre.blit(fin_jeux, rectFin_jeux)
-    fenetre.blit(bouton_niveau_suivant, (830, 250))
-    fenetre.blit(bouton_menu, (820, 400))
+    fenetre.blit(bouton_niveau_suivant, (360, 130))
+    fenetre.blit(bouton_menu, (360, 280))
+    fenetre.blit(texte_menu, (740, 460))
+    fenetre.blit(texte_niveau_suivant, (655, 310))
 
 def fin_de_jeux_perdu() :
     fenetre.blit(menu_fin_jeux, (0, 0))
     fenetre.blit(fin_jeux, rectFin_jeux)
-    fenetre.blit(bouton_retry, (830, 250))
-    fenetre.blit(bouton_menu, (820, 400))
+    fenetre.blit(bouton_retry, (360, 130))
+    fenetre.blit(bouton_menu, (360, 280))
+    fenetre.blit(texte_menu, (740, 460))
+    fenetre.blit(texte_retry, (655, 310))
+
+def fin_jeux_infini() :
+    fenetre.blit(menu_fin_jeux, (0, 0))
+    fenetre.blit(fin_jeux, rectFin_jeux)
+    fenetre.blit(bouton_retry, (360, 130))
+    fenetre.blit(texte_nombre_kill, (790, 130))
+    fenetre.blit(texte_score, (720, 30))
+    fenetre.blit(bouton_menu, (360, 280))
+    fenetre.blit(texte_menu, (740, 460))
+    fenetre.blit(texte_retry, (655, 310))
 
 def exit_game() :
     print("Fermeture du projet !")
@@ -439,7 +461,7 @@ def exit_game() :
 #Boucle de jeux :
 boucle = True
 while boucle == True :
-    #print(timer)
+    print(stat)
 
     if stat == "menu" or stat == "jeux" or stat == "option" or stat == "commands" or stat == "help" : 
         timer = -100
@@ -534,8 +556,12 @@ while boucle == True :
         niveau10()
 
     if stat == "infinity" :
+        stat_niveau = "infinity"
         bucheron_random = randint(1, 40)
         infinity()
+
+    if stat == "fin_jeux_infinity" :
+        fin_jeux_infini()
 
     if stat == "option" :
         option()
@@ -555,9 +581,20 @@ while boucle == True :
     if stat == "fin_jeux_perdu" :
         fin_de_jeux_perdu()
 
-    if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "niveau4" or stat == "niveau5" or stat == "niveau6" or stat == "niveau7" or stat == "niveau8" or stat == "niveau9" or stat == "niveau10" or stat == "infinity":
+    if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "niveau4" or stat == "niveau5" or stat == "niveau6" or stat == "niveau7" or stat == "niveau8" or stat == "niveau9" or stat == "niveau10" :
+        game.player.image = pygame.transform.scale(game.player.image, (120, 120))
         fenetre.blit(texte_timer, rectTexte_timer)
         texte_timer = arial_font_moyen.render(str(timer), True, red)
+        if game.GAME_OVER == False :
+            if bucheron_random == 40 :
+                game.ajout_bucheron_H()
+            if bucheron_random == 30 :
+                game.ajout_bucheron_C()
+
+    if stat == "infinity" :
+        texte_nombre_kill = arial_font_moyen.render(str(game.nombre_kill), True, red)
+        game.player.image = pygame.transform.scale(game.player.image, (120, 120))
+        fenetre.blit(texte_nombre_kill, (20, 20))
         if game.GAME_OVER == False :
             if bucheron_random == 40 :
                 game.ajout_bucheron_H()
@@ -587,11 +624,19 @@ while boucle == True :
         stat = "fin_jeux_gagne"
         pygame.mixer.music.unpause()
 
+    if stat_niveau == "infinity" :
+        if game.GAME_OVER == True :
+            timer = -5
+            game.nombre_kill = 0
+            stat = "fin_jeux_infinity"
+            pygame.mixer.music.unpause()
+
     if game.GAME_OVER == True :
-        timer = -5
-        print("Perdu !")
-        stat = "fin_jeux_perdu"
-        pygame.mixer.music.unpause()
+        if stat_niveau != "infinity" :
+            timer = -5
+            print("Perdu !")
+            stat = "fin_jeux_perdu"
+            pygame.mixer.music.unpause()
 
     if stat == "commands" :
         texte_attack = arial_font_grand.render(chr(attack), True, red)
@@ -759,8 +804,8 @@ while boucle == True :
                         timer = 30
                         pygame.mixer.music.pause()
                         stat = "niveau10"
-                if x >= 625 and x <= 974 and y >= 680 and y <= 826 :
-                    timer = 30
+                if x >= 1019 and x <= 1568 and y >= 680 and y <= 830 :
+                    game.nombre_kill = 0
                     pygame.mixer.music.pause()
                     stat = "infinity"
             elif stat == "commands" or stat == "help":
@@ -823,9 +868,9 @@ while boucle == True :
                     game.map.rect.y = -700
                     game.player.rect.x = 740
                     game.player.rect.y = 380
-                    if x >= 830 and x <= 958 and y >= 414 and y <= 534 :
+                    if x >= 586 and x <= 1016 and y >= 420 and y <= 540 :
                         stat = "menu"
-                    if x >= 850 and x <= 952 and y >= 267 and y <= 385 :
+                    if x >= 586 and x <= 1016 and y >= 270 and y <= 388 :
                         if stat_niveau == "niveau1" :
                             game.GAME_OVER = False
                             game.map.rect.x = -1050
@@ -906,16 +951,18 @@ while boucle == True :
                             game.player.rect.y = 380
                             stat = "niveau10"
                             timer = 30
-            elif stat == "fin_jeux_perdu" :
+            elif stat == "fin_jeux_perdu" or stat == "fin_jeux_infinity":
                     game.GAME_OVER = False
                     game.map.rect.x = -1050
                     game.map.rect.y = -700
                     game.player.rect.x = 740
                     game.player.rect.y = 380
-                    if x >= 830 and x <= 958 and y >= 414 and y <= 534 :
+                    if x >= 586 and x <= 1016 and y >= 420 and y <= 540 :
                         stat = "menu"
-                    if x >= 830 and x <= 931 and y >= 246 and y <= 350 :
+                    if x >= 586 and x <= 1016 and y >= 270 and y <= 388 :
+                        pygame.mixer.music.pause()
                         timer = 30
+                        game.nombre_kill = 0
                         stat = stat_niveau
 
         '''Effet bouton option '''

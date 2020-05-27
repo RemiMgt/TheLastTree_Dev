@@ -46,7 +46,7 @@ class Bucheron_H(pygame.sprite.Sprite) :
                 self.game.all_projectile.empty()
 
     def move_player(self) :
-        print("Test mov_player !")
+        #print("Test mov_player !")
         if self.game.player.direction == "D" :
             self.rect.x = self.rect.x + self.vitesse
         if self.game.player.direction == "G" :

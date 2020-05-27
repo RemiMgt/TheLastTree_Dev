@@ -47,14 +47,14 @@ dimension_bouton_retour_menu_width = bouton_retour_menu_fin.get_width()
 dimension_bouton_retour_menu_height = bouton_retour_menu_fin.get_height()
 bouton_retour_menu_fin = pygame.transform.scale(bouton_retour_menu_fin, (300, 120))
 
-bouton_retry = pygame.image.load("assets/bouton_retry.png")
-bouton_retry = pygame.transform.scale(bouton_retry, (100, 100))
+bouton_retry = pygame.image.load("assets/bouton_play.png")
+bouton_retry = pygame.transform.scale(bouton_retry, (900, 400))
 
-bouton_menu = pygame.image.load("assets/bouton_menu.png")
-bouton_menu = pygame.transform.scale(bouton_menu, (150, 150))
+bouton_menu = pygame.image.load("assets/bouton_play.png")
+bouton_menu = pygame.transform.scale(bouton_menu, (900, 400))
 
-bouton_niveau_suivant = pygame.image.load("assets/bouton_niveau_suivant.png")
-bouton_niveau_suivant = pygame.transform.scale(bouton_niveau_suivant, (150, 150))
+bouton_niveau_suivant = pygame.image.load("assets/bouton_play.png")
+bouton_niveau_suivant = pygame.transform.scale(bouton_niveau_suivant, (900, 400))
 
 #Niveau :
 bouton_niveau1 = pygame.image.load("assets/bouton_niveau.png")
@@ -107,8 +107,8 @@ bouton_niveau10 = pygame.transform.scale(bouton_niveau10, (350, 150))
 bouton2_niveau10 = pygame.image.load("assets/bouton_niveau2.png")
 bouton2_niveau10 = pygame.transform.scale(bouton2_niveau10, (350, 150))
 
-bouton_infinity = pygame.image.load("assets/bouton_niveau.png")
-bouton_infinity = pygame.transform.scale(bouton_infinity, (400, 200))
+bouton_infinity = pygame.image.load("assets/bouton_niveau_infini.png")
+bouton_infinity = pygame.transform.scale(bouton_infinity, (550, 150))
 bouton2_niveau_infi = pygame.image.load("assets/bouton_niveau2.png")
 bouton2_niveau_infi = pygame.transform.scale(bouton2_niveau_infi, (400, 200))
 

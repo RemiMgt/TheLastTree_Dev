@@ -18,7 +18,7 @@ class Game() :
         self.all_projectile = pygame.sprite.Group()
         self.pressed = {}
         self.GAME_OVER = False
-        self.nombre_kill_restant = 3
+        self.nombre_kill = 0
 
     def ajout_bucheron_H(self) :
         self.all_bucheron_H.add(Bucheron_H(self))
