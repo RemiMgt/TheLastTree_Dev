@@ -511,7 +511,7 @@ while boucle == True :
 
     if stat == "niveau1" :
         stat_niveau = "niveau1"
-        bucheron_random = randint(1, 100)
+        bucheron_random = randint(1, 300)
         niveau1()
     if stat == "niveau2" :
         stat_niveau = "niveau2"
@@ -595,10 +595,8 @@ while boucle == True :
         projectile.move()
         #projectile.move_player()
     for bucheron_H in game.all_bucheron_H :
-        bucheron_H.move_player()
         bucheron_H.move()
     for bucheron_C in game.all_bucheron_C :
-        bucheron_C.move_player()
         bucheron_C.move()
     game.all_projectile.draw(fenetre)
     game.all_bucheron_H.draw(fenetre)
