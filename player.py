@@ -68,7 +68,7 @@ class Player(pygame.sprite.Sprite) :
 
 
 
-    def move_haut_joy(self) :
+    def move_haut_joy(self, game) :
         self.direction = "H"
         self.image = pygame.image.load("sprite/cour_haut1.png")
         self.image = pygame.transform.scale(self.image, (120, 120))
@@ -95,37 +95,37 @@ class Player(pygame.sprite.Sprite) :
 
 
     def animation_haut(self):
-        self.image = pygame.transform.scale(self.image, (120, 120))
         self.index_haut += 1
 
         if self.index_haut >= len(self.tab_haut):
             self.index_haut = 0
 
         self.image = self.tab_haut[self.index_haut]
+        self.image = pygame.transform.scale(self.image, (120, 120))
 
     def animation_bas(self):
-        self.image = pygame.transform.scale(self.image, (120, 120))
         self.index_bas += 1
 
         if self.index_bas >= len(self.tab_bas):
             self.index_bas = 0
 
         self.image = self.tab_bas[self.index_bas]
+        self.image = pygame.transform.scale(self.image, (120, 120))
 
     def animation_droite(self):
-        self.image = pygame.transform.scale(self.image, (120, 120))
         self.index_droite += 1
 
         if self.index_droite >= len(self.tab_droite):
             self.index_droite = 0
 
         self.image = self.tab_droite[self.index_droite]
+        self.image = pygame.transform.scale(self.image, (120, 120))
 
     def animation_gauche(self):
-        self.image = pygame.transform.scale(self.image, (120, 120))
         self.index_gauche += 1
 
         if self.index_gauche >= len(self.tab_gauche):
             self.index_gauche = 0
 
         self.image = self.tab_gauche[self.index_gauche]
+        self.image = pygame.transform.scale(self.image, (120, 120))
