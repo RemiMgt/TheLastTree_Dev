@@ -753,52 +753,52 @@ while boucle == True :
                 if x >= 90 and x <= 311 and y >= 660 and y <= 770 :
                     stat = "menu"
                 if x >= 90 and x <= 440 and y >= 79 and y <= 230 :
-                    timer = 2
+                    timer = 30
                     pygame.mixer.music.pause()
                     stat = "niveau1"
                 if passage_niveau2 == True :
                     if x >= 627 and x <= 974 and y >= 80 and y <= 223 :
-                        timer = 2
+                        timer = 30
                         pygame.mixer.music.pause()
                         stat = "niveau2"
                 if passage_niveau3 == True :
                     if x >= 1159 and x <= 1512 and y >= 80 and y <= 223 :
-                        timer = 2
+                        timer = 30
                         pygame.mixer.music.pause()
                         stat = "niveau3"
                 if passage_niveau4 == True :
                     if x >= 91 and x <= 438 and y >= 280 and y <= 427 :
-                        timer = 2
+                        timer = 30
                         pygame.mixer.music.pause()
                         stat = "niveau4"
                 if passage_niveau5 == True :
                     if x >= 627 and x <= 974 and y >= 279 and y <= 424 :
-                        timer = 2
+                        timer = 30
                         pygame.mixer.music.pause()
                         stat = "niveau5"
                 if passage_niveau6 == True :
                     if x >= 1159 and x <= 1512 and y >= 280 and y <= 427 :
-                        timer = 2
+                        timer = 30
                         pygame.mixer.music.pause()
                         stat = "niveau6"
                 if passage_niveau7 == True :
                     if x >= 90 and x <= 442 and y >= 476 and y <= 627 :
-                        timer = 2
+                        timer = 30
                         pygame.mixer.music.pause()
                         stat = "niveau7"
                 if passage_niveau8 == True :
                     if x >= 625 and x <= 974 and y >= 476 and y <= 627 :
-                        timer = 2
+                        timer = 30
                         pygame.mixer.music.pause()
                         stat = "niveau8"
                 if passage_niveau9 == True :
                     if x >= 1159 and x <= 1512 and y >= 476 and y <= 627 :
-                        timer = 2
+                        timer = 30
                         pygame.mixer.music.pause()
                         stat = "niveau9"
                 if passage_niveau10 == True :
                     if x >= 625 and x <= 974 and y >= 680 and y <= 826 :
-                        timer = 2
+                        timer = 30
                         pygame.mixer.music.pause()
                         stat = "niveau10"
                 if x >= 1019 and x <= 1568 and y >= 680 and y <= 830 :
@@ -874,7 +874,7 @@ while boucle == True :
                         game.player.rect.x = 740
                         game.player.rect.y = 380
                         pygame.mixer.music.pause()
-                        timer = 2
+                        timer = 30
                         if stat_niveau == "niveau1" :
                             stat = "niveau2"
                         if stat_niveau == "niveau2" :
@@ -902,6 +902,7 @@ while boucle == True :
                     if x >= 586 and x <= 1016 and y >= 420 and y <= 540 :
                         stat = "menu"
                     if x >= 586 and x <= 1016 and y >= 270 and y <= 388 :
+                        timer = 30
                         pygame.mixer.music.pause()
                         game.nombre_kill = 0
                         stat = stat_niveau
