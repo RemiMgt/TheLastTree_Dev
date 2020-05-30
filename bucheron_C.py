@@ -2,15 +2,14 @@ import pygame
 from random import *
 
 def move_player_C(self) :
-        print("Test mov_player !")
         if self.game.player.direction == "D" :
-            self.rect.x = self.rect.x - self.vitesse
+            self.rect.x = self.rect.x - self.vitesse / 2
         if self.game.player.direction == "G" :
-            self.rect.x = self.rect.x + self.vitesse
+            self.rect.x = self.rect.x + self.vitesse / 2
         if self.game.player.direction == "H" :
-            self.rect.y = self.rect.y + self.vitesse
+            self.rect.y = self.rect.y + self.vitesse / 2
         if self.game.player.direction == "B" :
-            self.rect.y = self.rect.y - self.vitesse
+            self.rect.y = self.rect.y - self.vitesse / 2
 
 class Bucheron_C(pygame.sprite.Sprite) :
     def __init__(self, game) :

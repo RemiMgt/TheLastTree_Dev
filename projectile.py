@@ -1,5 +1,15 @@
 import pygame
 
+def move_player(self) :
+        if self.game.player.direction == "D" :
+            self.rect.x = self.rect.x - self.vitesse / 2
+        if self.game.player.direction == "G" :
+            self.rect.x = self.rect.x + self.vitesse / 2
+        if self.game.player.direction == "H" :
+            self.rect.y = self.rect.y + self.vitesse / 2
+        if self.game.player.direction == "B" :
+            self.rect.y = self.rect.y - self.vitesse / 2
+
 class Projectile(pygame.sprite.Sprite) :
     def __init__(self, game, direction) :
         super().__init__()
@@ -18,6 +28,7 @@ class Projectile(pygame.sprite.Sprite) :
     def move(self) :
         if self.direction == "H" :
             if not self.game.check_collision(self, self.game.all_bucheron_H) and not self.game.check_collision(self, self.game.all_bucheron_C) :
+                move_player(self)
                 self.rect.y = self.rect.y - self.vitesse
             else :
                 print("Collision / Suppression !")
@@ -25,6 +36,7 @@ class Projectile(pygame.sprite.Sprite) :
                 self.remove()
         elif self.direction == "B" :
             if not self.game.check_collision(self, self.game.all_bucheron_H) and not self.game.check_collision(self, self.game.all_bucheron_C) :
+                move_player(self) 
                 self.rect.y = self.rect.y + self.vitesse
             else :
                 print("Collision / Suppression !")
@@ -32,6 +44,7 @@ class Projectile(pygame.sprite.Sprite) :
                 self.remove()
         elif self.direction == "D" :
             if not self.game.check_collision(self, self.game.all_bucheron_H) and not self.game.check_collision(self, self.game.all_bucheron_C) :
+                move_player(self)
                 self.rect.x = self.rect.x + self.vitesse
             else :
                 print("Collision / Suppression !")
@@ -39,18 +52,9 @@ class Projectile(pygame.sprite.Sprite) :
                 self.remove()
         elif self.direction == "G" :
             if not self.game.check_collision(self, self.game.all_bucheron_H) and not self.game.check_collision(self, self.game.all_bucheron_C) :
+                move_player(self)
                 self.rect.x = self.rect.x - self.vitesse
             else :
                 print("Collision / Suppression !")
                 self.game.nombre_kill += 1
                 self.remove()
-
-    def move_player(self) :
-        if self.game.player.direction == "D" :
-            self.rect.x = self.rect.x - self.vitesse
-        if self.game.player.direction == "G" :
-            self.rect.x = self.rect.x + self.vitesse
-        if self.game.player.direction == "H" :
-            self.rect.y = self.rect.y + self.vitesse
-        if self.game.player.direction == "B" :
-            self.rect.y = self.rect.y - self.vitesse

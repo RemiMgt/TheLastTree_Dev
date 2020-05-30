@@ -515,15 +515,15 @@ while boucle == True :
         niveau1()
     if stat == "niveau2" :
         stat_niveau = "niveau2"
-        bucheron_random = randint(1, 100)
+        bucheron_random = randint(1, 250)
         niveau2()
     if stat == "niveau3" :
         stat_niveau = "niveau3"
-        bucheron_random = randint(1, 100)
+        bucheron_random = randint(1, 200)
         niveau3()
     if stat == "niveau4" :
         stat_niveau = "niveau4"
-        bucheron_random = randint(1, 100)
+        bucheron_random = randint(1, 150)
         niveau4()
     if stat == "niveau5" :
         stat_niveau = "niveau5"
@@ -531,27 +531,27 @@ while boucle == True :
         niveau5()
     if stat == "niveau6" :
         stat_niveau = "niveau6"
-        bucheron_random = randint(1, 90)
+        bucheron_random = randint(1, 100)
         niveau6()
     if stat == "niveau7" :
         stat_niveau = "niveau7"
-        bucheron_random = randint(1, 80)
+        bucheron_random = randint(1, 100)
         niveau7()
     if stat == "niveau8" :
         stat_niveau = "niveau8"
-        bucheron_random = randint(1, 70)
+        bucheron_random = randint(1, 100)
         niveau8()
     if stat == "niveau9" :
         stat_niveau = "niveau9"
-        bucheron_random = randint(1, 60)
+        bucheron_random = randint(1, 100)
         niveau9()
     if stat == "niveau10" :
         stat_niveau = "niveau10"
-        bucheron_random = randint(1, 50)
+        bucheron_random = randint(1, 100)
         niveau10()
     if stat == "infinity" :
         stat_niveau = "infinity"
-        bucheron_random = randint(1, 40)
+        bucheron_random = randint(1, 200)
         infinity()
     if stat == "fin_jeux_infinity" :
         fin_jeux_infini()
@@ -571,7 +571,6 @@ while boucle == True :
         the_end()
 
     if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat == "niveau4" or stat == "niveau5" or stat == "niveau6" or stat == "niveau7" or stat == "niveau8" or stat == "niveau9" or stat == "niveau10" :
-        game.player.image = pygame.transform.scale(game.player.image, (120, 120))
         fenetre.blit(texte_timer, rectTexte_timer)
         texte_timer = arial_font_moyen.render(str(timer), True, red)
         if game.GAME_OVER == False :
@@ -593,7 +592,6 @@ while boucle == True :
     #Projectile :
     for projectile in game.all_projectile :
         projectile.move()
-        #projectile.move_player()
     for bucheron_H in game.all_bucheron_H :
         bucheron_H.move()
     for bucheron_C in game.all_bucheron_C :
@@ -891,7 +889,7 @@ while boucle == True :
                             stat = "niveau9"
                         if stat_niveau == "niveau9" :
                             stat = "niveau10"
-            elif stat == "fin_jeux_perdu" or stat == "fin_jeux_infinity":
+            elif stat == "fin_jeux_perdu" :
                     game.GAME_OVER = False
                     game.map.rect.x = -1050
                     game.map.rect.y = -700
@@ -904,6 +902,19 @@ while boucle == True :
                         pygame.mixer.music.pause()
                         game.nombre_kill = 0
                         stat = stat_niveau
+            elif stat == "fin_jeux_infinity" :
+                game.GAME_OVER = False
+                game.map.rect.x = -1050
+                game.map.rect.y = -700
+                game.player.rect.x = 740
+                game.player.rect.y = 380
+                if x >= 586 and x <= 1016 and y >= 420 and y <= 540 :
+                    stat = "menu"
+                if x >= 586 and x <= 1016 and y >= 270 and y <= 388 :
+                    pygame.mixer.music.pause()
+                    game.nombre_kill = 0
+                    stat = stat_niveau
+
 
         '''Effet bouton option '''
         if stat == "option" :
