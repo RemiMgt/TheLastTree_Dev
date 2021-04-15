@@ -467,7 +467,7 @@ def exit_game() :
 #Boucle de jeux :
 boucle = True
 while boucle == True :
-    print(stat)
+    
 
     if stat == "menu" or stat == "jeux" or stat == "option" or stat == "commands" or stat == "help" : 
         timer = -100
@@ -601,7 +601,7 @@ while boucle == True :
     game.all_bucheron_C.draw(fenetre)
 
     if timer == 0 :
-        print("Gagné !")
+     
         game.all_bucheron_C.empty()
         game.all_bucheron_H.empty()
         game.all_projectile.empty()
@@ -619,7 +619,7 @@ while boucle == True :
     if game.GAME_OVER == True :
         if stat_niveau != "infinity" :
             timer = -5
-            print("Perdu !")
+           
             stat = "fin_jeux_perdu"
             pygame.mixer.music.unpause()
 
@@ -687,13 +687,13 @@ while boucle == True :
             game.pressed[event.key] = False
 
         if event.type == pygame.QUIT :
-            print("Fermeture du projet")
+         
             boucle = False
             pygame.quit()
             sys.exit()
 
         if event.type == JOYBUTTONDOWN:
-            print(event.button)
+           
             game.pressed[event.button] = True
             if event.button == 0 and stat == "niveau1" :
                 game.ajout_projectile(game.player.direction)
@@ -705,7 +705,7 @@ while boucle == True :
 
         if event.type == pygame.KEYDOWN :
             if event.key == pygame.K_ESCAPE :
-                print("Fermeture du projet")
+                
                 boucle = False
                 pygame.quit()
                 sys.exit()
@@ -722,7 +722,6 @@ while boucle == True :
                 attack = pygame.key.get_pressed()
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            print(event.button)
             #click.play()
             if stat == "the_end" :
                 if x >= 598 and x <= 995 and y >= 615 and y <= 756 :
