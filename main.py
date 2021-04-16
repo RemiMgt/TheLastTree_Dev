@@ -219,6 +219,12 @@ rectFin_jeux.y = 0
 rectTexte_timer = texte_timer.get_rect()
 rectTexte_timer.x = 20
 rectTexte_timer.y = 20
+rectToucheEspace = touche_espace.get_rect()
+rectToucheEspace.x = 150 
+rectToucheEspace.y = 50
+rectToucheEnter = touche_enter.get_rect()
+rectToucheEnter.x = 150
+rectToucheEnter.y = 300
 
 #Fonction du menu:
 def menu() :
@@ -395,6 +401,8 @@ def commands() :
     fenetre.blit(commands_fleche, rectCommands_fleche)
     fenetre.blit(commands_zqsd, rectCommands_zqsd)
     fenetre.blit(commands_wasd, rectCommands_wasd)
+    fenetre.blit(touche_espace, rectToucheEspace)
+    fenetre.blit(touche_enter, rectToucheEnter)
 
     if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
         rectBouton_retour_option.x = -39
@@ -463,7 +471,7 @@ def exit_game() :
     sys.exit()
 
 
-#Fps :
+#Fps :'
 #clock = pygame.time.Clock(60)
 
 #Boucle de jeux :
@@ -625,11 +633,6 @@ while boucle == True :
             stat = "fin_jeux_perdu"
             pygame.mixer.music.unpause()
 
-    if stat == "commands" :
-        texte_attack = arial_font_grand.render(chr(attack), True, red)
-        fenetre.blit(texte_attack, (10, 10))
-        #print(chr(attack))
-
     #Textes et boutons UP :
     if passage_niveau2 == True :
         bouton_niveau2 = pygame.image.load("assets/bouton_niveau.png")
@@ -720,8 +723,6 @@ while boucle == True :
             if event.key == attack and stat == "infinity" :
                 game.ajout_projectile(game.player.direction)
 
-            if stat == "commands" :
-                attack = pygame.key.get_pressed()
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             #click.play()
@@ -838,6 +839,18 @@ while boucle == True :
                     rectCommands_fleche.y = 150
                     rectCommands_zqsd.x = 1260
                     rectCommands_zqsd.y = 350
+                if x >= 155 and x <= 616 and y >= 231 and y <= 342 :
+                    attack = pygame.K_SPACE
+                    rectToucheEspace.x = 170
+                    rectToucheEspace.y = 30
+                    rectToucheEnter.x = 150
+                    rectToucheEnter.y = 300
+                if x >= 300 and x <= 500 and y >= 410 and y <= 690 :
+                    attack = pygame.K_RETURN
+                    rectToucheEspace.x = 150
+                    rectToucheEspace.y = 50
+                    rectToucheEnter.x = 170
+                    rectToucheEnter.y = 280
             elif stat == "fin_jeux_gagne" :
                     if stat_niveau == "niveau1" :
                         passage_niveau2 = True
