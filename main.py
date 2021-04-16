@@ -61,10 +61,10 @@ arial_font_score = pygame.font.SysFont("arial", 100, True, False)
 arial_font_giant = pygame.font.SysFont("arial", 300, True, False)
 
 #Commands clavier :
-haut = pygame.K_w
+haut = pygame.K_z
 bas = pygame.K_s
 droite = pygame.K_d
-gauche = pygame.K_a
+gauche = pygame.K_q
 attack = pygame.K_SPACE
 
 #Timer :
@@ -823,15 +823,15 @@ while boucle == True :
                     rectCommands_fleche.y = 150
                     rectCommands_wasd.x = 1260
                     rectCommands_wasd.y = 550
-                    haut = pygame.K_w
-                    bas = pygame.K_s
-                    droite = pygame.K_d
-                    gauche = pygame.K_a
-                if x >= 1260 and x <= 1460 and y >= 550 and y <= 679 :
                     haut = pygame.K_z
                     bas = pygame.K_s
                     droite = pygame.K_d
                     gauche = pygame.K_q
+                if x >= 1260 and x <= 1460 and y >= 550 and y <= 679 :
+                    haut = pygame.K_w
+                    bas = pygame.K_s
+                    droite = pygame.K_d
+                    gauche = pygame.K_a
                     rectCommands_wasd.x = 1290
                     rectCommands_wasd.y = 530
                     rectCommands_fleche.x = 1260
