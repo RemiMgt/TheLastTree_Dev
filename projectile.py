@@ -19,7 +19,7 @@ class Projectile(pygame.sprite.Sprite) :
         self.game = game
         self.rect.x = game.player.rect.x + 20
         self.rect.y = game.player.rect.y + 30
-        self.vitesse = 15
+        self.vitesse = 30
         self.direction = direction
 
     def remove(self) :
