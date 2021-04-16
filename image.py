@@ -116,3 +116,6 @@ commands_zqsd = pygame.image.load("commands/zqsd.png")
 commands_zqsd = pygame.transform.scale(commands_zqsd, (200, 129))
 commands_wasd = pygame.image.load("commands/wasd.png")
 commands_wasd = pygame.transform.scale(commands_wasd, (200, 129))
+
+touche_espace = pygame.image.load("assets/touche_espace.png")
+touche_enter = pygame.image.load("assets/touche_enter.png")
