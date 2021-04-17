@@ -584,7 +584,7 @@ while boucle == True :
     if stat == "the_end" :
         the_end()
 
-    if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat== "niveau4" or stat == "niveau5" or stat== "niveau6" or stat == "niveau7" or stat == "niveau8" or stat == "niveau9" or stat == "niveau10" or stat == "infinity":
+    if stat == "niveau1" or stat == "niveau2" or stat == "niveau3" or stat== "niveau4" or stat == "niveau5" or stat== "niveau6" or stat == "niveau7" or stat == "niveau8" or stat == "niveau9" or stat == "niveau10":
         fenetre.blit(texte_timer, rectTexte_timer)
         texte_timer = arial_font_moyen.render(str(timer), True, red)
         if game.GAME_OVER == False :
