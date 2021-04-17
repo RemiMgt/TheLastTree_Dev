@@ -419,6 +419,10 @@ def help() :
     fenetre.blit(fond_ecran_help, (0, 0))
     fenetre.blit(bouton_retour_help_option, rectBouton_retour_help_option)
     fenetre.blit(texte_retour_option, rectTexte_retour_option)
+    fenetre.blit(option_1, (500, 100))
+    fenetre.blit(option_2, (100, 300))
+    fenetre.blit(option_3, (100, 500))
+    fenetre.blit(option_4, (600, 600))
 
     if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
         rectBouton_retour_help_option.x = -39
@@ -803,7 +807,7 @@ while boucle == True :
                     game.nombre_kill = 0
                     pygame.mixer.music.pause()
                     stat = "infinity"
-            elif stat == "commands" or stat == "help":
+            elif stat == "commands":
                 if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
                     stat = "option"
                 if x >= 1260 and x <= 1460 and y >= 150 and y <= 279 :
@@ -851,6 +855,9 @@ while boucle == True :
                     rectToucheEspace.y = 50
                     rectToucheEnter.x = 170
                     rectToucheEnter.y = 280
+            elif stat == "help" :
+                if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
+                    stat = "option"
             elif stat == "fin_jeux_gagne" :
                     if stat_niveau == "niveau1" :
                         passage_niveau2 = True
