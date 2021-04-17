@@ -119,3 +119,9 @@ commands_wasd = pygame.transform.scale(commands_wasd, (200, 129))
 
 touche_espace = pygame.image.load("assets/touche_espace.png")
 touche_enter = pygame.image.load("assets/touche_enter.png")
+
+#Options :
+option_1 = pygame.image.load("assets/option_1.png")
+option_2 = pygame.image.load("assets/option_2.png")
+option_3 = pygame.image.load("assets/option_3.png")
+option_4 = pygame.image.load("assets/option_4.png")
