@@ -1,7 +1,7 @@
 import pygame
 from random import *
 
-def move_player_H(self) :
+def move_player_H(self) : 
         if self.game.player.direction == "D" :
             self.rect.x = self.rect.x - self.vitesse / 2
         if self.game.player.direction == "G" :
@@ -27,6 +27,7 @@ class Bucheron_H(pygame.sprite.Sprite) :
                 move_player_H(self)
                 self.rect.x = self.rect.x + self.vitesse
             else :
+                self.game.active_musique = True
                 self.game.GAME_OVER = True
                 self.game.all_bucheron_C.empty()
                 self.game.all_bucheron_H.empty()
@@ -36,6 +37,7 @@ class Bucheron_H(pygame.sprite.Sprite) :
                 move_player_H(self)
                 self.rect.x = self.rect.x - self.vitesse
             else :
+                self.game.active_musique = True
                 self.game.GAME_OVER = True
                 self.game.all_bucheron_C.empty()
                 self.game.all_bucheron_H.empty()
@@ -45,6 +47,7 @@ class Bucheron_H(pygame.sprite.Sprite) :
                 move_player_H(self)
                 self.rect.y = self.rect.y - self.vitesse
             else :
+                self.game.active_musique = True
                 self.game.GAME_OVER = True
                 self.game.all_bucheron_C.empty()
                 self.game.all_bucheron_H.empty()
@@ -54,6 +57,7 @@ class Bucheron_H(pygame.sprite.Sprite) :
                 move_player_H(self)
                 self.rect.y = self.rect.y + self.vitesse
             else :
+                self.game.active_musique = True
                 self.game.GAME_OVER = True
                 self.game.all_bucheron_C.empty()
                 self.game.all_bucheron_H.empty()
