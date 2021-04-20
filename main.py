@@ -76,10 +76,11 @@ texte_titre1 = arial_font_grand.render("T", True, vert_titre)
 texte_titre2 = arial_font.render("he Last Tree", True, vert_titre)
 
 #Musiques :
-musique_menu = "assets/musique.ogg"
-pygame.mixer.music.load(musique_menu)
+musique_menu = pygame.mixer.Sound("assets/musique.ogg")
+musique_jeux = pygame.mixer.Sound("assets/musique_jeux.ogg")
+
+musique_menu.play(-1)
 pygame.mixer.music.set_volume(0.3)
-pygame.mixer.music.play(-1, 0)
 
 #Bruitage click :
 click = pygame.mixer.Sound("assets/bruit-clic.wav")
@@ -344,27 +345,37 @@ def niveau5() :
     fenetre.blit(game.player.image, game.player.rect)
 
 def niveau6() :
+    game.bucheron_H.vitesse = 13
+    game.bucheron_C.vitesse = 13
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
     fenetre.blit(game.player.image, game.player.rect)
 
 def niveau7() :
+    game.bucheron_H.vitesse = 14
+    game.bucheron_C.vitesse = 14
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
     fenetre.blit(game.player.image, game.player.rect)
 
 
 def niveau8() :
+    game.bucheron_H.vitesse = 15
+    game.bucheron_C.vitesse = 15
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
     fenetre.blit(game.player.image, game.player.rect)
 
 def niveau9() :
+    game.bucheron_H.vitesse = 16
+    game.bucheron_C.vitesse = 16
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
     fenetre.blit(game.player.image, game.player.rect)
 
 def niveau10() :
+    game.bucheron_H.vitesse = 20
+    game.bucheron_C.vitesse = 20
     fenetre.blit(game.map.image, game.map.rect)
     fenetre.blit(game.arbre.image, game.arbre.rect)
     fenetre.blit(game.player.image, game.player.rect)
@@ -615,27 +626,30 @@ while boucle == True :
     game.all_bucheron_C.draw(fenetre)
 
     if timer == 0 :
-     
         game.all_bucheron_C.empty()
         game.all_bucheron_H.empty()
         game.all_projectile.empty()
         #Changer texte en perdu
         stat = "fin_jeux_gagne"
-        pygame.mixer.music.unpause()
+        musique_jeux.stop()
 
     if stat_niveau == "infinity" :
         if game.GAME_OVER == True :
             timer = -5
             game.nombre_kill = 0
             stat = "fin_jeux_infinity"
-            pygame.mixer.music.unpause()
+            musique_jeux.stop()
 
     if game.GAME_OVER == True :
         if stat_niveau != "infinity" :
             timer = -5
            
             stat = "fin_jeux_perdu"
-            pygame.mixer.music.unpause()
+            musique_jeux.stop()
+
+    if game.active_musique == True :
+        musique_menu.play(-1) 
+        game.active_musique = False
 
     #Textes et boutons UP :
     if passage_niveau2 == True :
@@ -724,20 +738,34 @@ while boucle == True :
                 game.ajout_projectile(game.player.direction)
             if event.key == attack and stat == "niveau3" :
                 game.ajout_projectile(game.player.direction)
+            if event.key == attack and stat == "niveau4" :
+                game.ajout_projectile(game.player.direction)
+            if event.key == attack and stat == "niveau5" :
+                game.ajout_projectile(game.player.direction)
+            if event.key == attack and stat == "niveau6" :
+                game.ajout_projectile(game.player.direction)
+            if event.key == attack and stat == "niveau7" :
+                game.ajout_projectile(game.player.direction)
+            if event.key == attack and stat == "niveau8" :
+                game.ajout_projectile(game.player.direction)
+            if event.key == attack and stat == "niveau9" :
+                game.ajout_projectile(game.player.direction)
+            if event.key == attack and stat == "niveau10" :
+                game.ajout_projectile(game.player.direction)
             if event.key == attack and stat == "infinity" :
                 game.ajout_projectile(game.player.direction)
 
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            #click.play()
+            #click.play(-1)
             if stat == "the_end" :
                 if x >= 598 and x <= 995 and y >= 615 and y <= 756 :
                     stat = "menu"
             if stat == "option" :
                 if x >= 95 and x <= 238 and y >= 122 and y <= 234 :
-                    pygame.mixer.music.unpause()
+                    pygame.mixer.unpause()
                 if x >= 352 and x <= 497 and y >= 92 and y <= 250 :
-                    pygame.mixer.music.pause()
+                    pygame.mixer.pause()
                 if x >= 83 and x <= 365 and y >= 502 and y <= 607 :
                     stat = "commands"
                 if x >= 148 and x <= 348 and y >= 265 and y <= 460 :
@@ -756,56 +784,67 @@ while boucle == True :
                     stat = "menu"
                 if x >= 90 and x <= 440 and y >= 79 and y <= 230 :
                     timer = 30
-                    pygame.mixer.music.pause()
+                    musique_menu.stop()
+                    musique_jeux.play(-1)
                     stat = "niveau1"
                 if passage_niveau2 == True :
                     if x >= 627 and x <= 974 and y >= 80 and y <= 223 :
                         timer = 30
-                        pygame.mixer.music.pause()
+                        musique_menu.stop()
+                        musique_jeux.play(-1)
                         stat = "niveau2"
                 if passage_niveau3 == True :
                     if x >= 1159 and x <= 1512 and y >= 80 and y <= 223 :
                         timer = 30
-                        pygame.mixer.music.pause()
+                        musique_menu.stop()
+                        musique_jeux.play(-1)
                         stat = "niveau3"
                 if passage_niveau4 == True :
                     if x >= 91 and x <= 438 and y >= 280 and y <= 427 :
                         timer = 30
-                        pygame.mixer.music.pause()
+                        musique_menu.stop()
+                        musique_jeux.play(-1)
                         stat = "niveau4"
                 if passage_niveau5 == True :
                     if x >= 627 and x <= 974 and y >= 279 and y <= 424 :
                         timer = 30
-                        pygame.mixer.music.pause()
+                        musique_menu.stop()
+                        musique_jeux.play(-1)
                         stat = "niveau5"
                 if passage_niveau6 == True :
                     if x >= 1159 and x <= 1512 and y >= 280 and y <= 427 :
                         timer = 30
-                        pygame.mixer.music.pause()
+                        musique_menu.stop()
+                        musique_jeux.play(-1)
                         stat = "niveau6"
                 if passage_niveau7 == True :
                     if x >= 90 and x <= 442 and y >= 476 and y <= 627 :
                         timer = 30
-                        pygame.mixer.music.pause()
+                        musique_menu.stop()
+                        musique_jeux.play(-1)
                         stat = "niveau7"
                 if passage_niveau8 == True :
                     if x >= 625 and x <= 974 and y >= 476 and y <= 627 :
                         timer = 30
-                        pygame.mixer.music.pause()
+                        musique_menu.stop()
+                        musique_jeux.play(-1)
                         stat = "niveau8"
                 if passage_niveau9 == True :
                     if x >= 1159 and x <= 1512 and y >= 476 and y <= 627 :
                         timer = 30
-                        pygame.mixer.music.pause()
+                        musique_menu.stop()
+                        musique_jeux.play(-1)
                         stat = "niveau9"
                 if passage_niveau10 == True :
                     if x >= 625 and x <= 974 and y >= 680 and y <= 826 :
                         timer = 30
-                        pygame.mixer.music.pause()
+                        musique_menu.stop()
+                        musique_jeux.play(-1)
                         stat = "niveau10"
                 if x >= 1019 and x <= 1568 and y >= 680 and y <= 830 :
                     game.nombre_kill = 0
-                    pygame.mixer.music.pause()
+                    musique_menu.stop()
+                    musique_jeux.play(-1)
                     stat = "infinity"
             elif stat == "commands":
                 if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
@@ -890,7 +929,8 @@ while boucle == True :
                         game.map.rect.y = -700
                         game.player.rect.x = 740
                         game.player.rect.y = 380
-                        pygame.mixer.music.pause()
+                        musique_menu.stop()
+                        musique_jeux.play(-1)
                         timer = 30
                         if stat_niveau == "niveau1" :
                             stat = "niveau2"
@@ -920,7 +960,8 @@ while boucle == True :
                         stat = "menu"
                     if x >= 586 and x <= 1016 and y >= 270 and y <= 388 :
                         timer = 30
-                        pygame.mixer.music.pause()
+                        musique_menu.stop()
+                        musique_jeux.play(-1)
                         game.nombre_kill = 0
                         stat = stat_niveau
             elif stat == "fin_jeux_infinity" :
@@ -932,7 +973,8 @@ while boucle == True :
                 if x >= 586 and x <= 1016 and y >= 420 and y <= 540 :
                     stat = "menu"
                 if x >= 586 and x <= 1016 and y >= 270 and y <= 388 :
-                    pygame.mixer.music.pause()
+                    musique_menu.stop()
+                    musique_jeux.play(-1)
                     game.nombre_kill = 0
                     stat = stat_niveau
 
