@@ -4,9 +4,11 @@ Developpement du projet : TheLastTree
 - To START the project :
 
 install python3 
-install pygame with pip3
+install pygame 
 
-python3 main.py
+and ...
+
+.main.py
 
 ENJOY MY GAME !
 
