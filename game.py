@@ -19,7 +19,6 @@ class Game() :
         self.pressed = {}
         self.GAME_OVER = False
         self.nombre_kill = 0
-        self.active_musique = False
 
     def ajout_bucheron_H(self) :
         self.all_bucheron_H.add(Bucheron_H(self))
