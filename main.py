@@ -15,6 +15,13 @@ pygame.init()
 
 game = Game()
 
+#Musiques :
+musique_menu = pygame.mixer.Sound("assets/musique.ogg")
+musique_jeux = pygame.mixer.Sound("assets/musique_jeux.ogg")
+
+musique_menu.play(-1)
+pygame.mixer.music.set_volume(0.3)
+
 #Statue niveau :
 stat_niveau = "niveau1"
 
@@ -74,13 +81,6 @@ pygame.time.set_timer(pygame.USEREVENT, 1000)
 #Titre jeux :
 texte_titre1 = arial_font_grand.render("T", True, vert_titre)
 texte_titre2 = arial_font.render("he Last Tree", True, vert_titre)
-
-#Musiques :
-musique_menu = pygame.mixer.Sound("assets/musique.ogg")
-musique_jeux = pygame.mixer.Sound("assets/musique_jeux.ogg")
-
-musique_menu.play(-1)
-pygame.mixer.music.set_volume(0.3)
 
 #Bruitage click :
 click = pygame.mixer.Sound("assets/bruit-clic.wav")
@@ -631,25 +631,18 @@ while boucle == True :
         game.all_projectile.empty()
         #Changer texte en perdu
         stat = "fin_jeux_gagne"
-        musique_jeux.stop()
 
     if stat_niveau == "infinity" :
         if game.GAME_OVER == True :
             timer = -5
             game.nombre_kill = 0
             stat = "fin_jeux_infinity"
-            musique_jeux.stop()
 
     if game.GAME_OVER == True :
         if stat_niveau != "infinity" :
             timer = -5
            
             stat = "fin_jeux_perdu"
-            musique_jeux.stop()
-
-    if game.active_musique == True :
-        musique_menu.play(-1) 
-        game.active_musique = False
 
     #Textes et boutons UP :
     if passage_niveau2 == True :
@@ -774,6 +767,8 @@ while boucle == True :
                     stat = "menu"
             elif stat == "menu" :
                 if x >= 264 and x <= 594 and y >= 173 and y <= 337 :
+                    musique_menu.stop()
+                    musique_jeux.play(-1)
                     stat = "jeux"
                 if x >= 158 and x <= 459 and y >= 414 and y <= 570 :
                     stat = "option"
@@ -781,70 +776,50 @@ while boucle == True :
                     stat = "exit"
             elif stat == "jeux" :
                 if x >= 90 and x <= 311 and y >= 660 and y <= 770 :
+                    musique_jeux.stop()
+                    musique_menu.play(-1)
                     stat = "menu"
                 if x >= 90 and x <= 440 and y >= 79 and y <= 230 :
                     timer = 30
-                    musique_menu.stop()
-                    musique_jeux.play(-1)
                     stat = "niveau1"
                 if passage_niveau2 == True :
                     if x >= 627 and x <= 974 and y >= 80 and y <= 223 :
                         timer = 30
-                        musique_menu.stop()
-                        musique_jeux.play(-1)
                         stat = "niveau2"
                 if passage_niveau3 == True :
                     if x >= 1159 and x <= 1512 and y >= 80 and y <= 223 :
                         timer = 30
-                        musique_menu.stop()
-                        musique_jeux.play(-1)
                         stat = "niveau3"
                 if passage_niveau4 == True :
                     if x >= 91 and x <= 438 and y >= 280 and y <= 427 :
                         timer = 30
-                        musique_menu.stop()
-                        musique_jeux.play(-1)
                         stat = "niveau4"
                 if passage_niveau5 == True :
                     if x >= 627 and x <= 974 and y >= 279 and y <= 424 :
                         timer = 30
-                        musique_menu.stop()
-                        musique_jeux.play(-1)
                         stat = "niveau5"
                 if passage_niveau6 == True :
                     if x >= 1159 and x <= 1512 and y >= 280 and y <= 427 :
                         timer = 30
-                        musique_menu.stop()
-                        musique_jeux.play(-1)
                         stat = "niveau6"
                 if passage_niveau7 == True :
                     if x >= 90 and x <= 442 and y >= 476 and y <= 627 :
                         timer = 30
-                        musique_menu.stop()
-                        musique_jeux.play(-1)
                         stat = "niveau7"
                 if passage_niveau8 == True :
                     if x >= 625 and x <= 974 and y >= 476 and y <= 627 :
                         timer = 30
-                        musique_menu.stop()
-                        musique_jeux.play(-1)
                         stat = "niveau8"
                 if passage_niveau9 == True :
                     if x >= 1159 and x <= 1512 and y >= 476 and y <= 627 :
                         timer = 30
-                        musique_menu.stop()
-                        musique_jeux.play(-1)
                         stat = "niveau9"
                 if passage_niveau10 == True :
                     if x >= 625 and x <= 974 and y >= 680 and y <= 826 :
                         timer = 30
-                        musique_menu.stop()
-                        musique_jeux.play(-1)
                         stat = "niveau10"
                 if x >= 1019 and x <= 1568 and y >= 680 and y <= 830 :
                     game.nombre_kill = 0
-                    musique_menu.stop()
-                    musique_jeux.play(-1)
                     stat = "infinity"
             elif stat == "commands":
                 if x >= 72 and x <= 292 and y >= 677 and y <= 778 :
@@ -922,6 +897,8 @@ while boucle == True :
                     game.player.rect.x = 740
                     game.player.rect.y = 380
                     if x >= 586 and x <= 1016 and y >= 420 and y <= 540 :
+                        musique_jeux.stop()
+                        musique_menu.play(-1)
                         stat = "menu"
                     if x >= 586 and x <= 1016 and y >= 270 and y <= 388 :
                         game.GAME_OVER = False
@@ -929,8 +906,6 @@ while boucle == True :
                         game.map.rect.y = -700
                         game.player.rect.x = 740
                         game.player.rect.y = 380
-                        musique_menu.stop()
-                        musique_jeux.play(-1)
                         timer = 30
                         if stat_niveau == "niveau1" :
                             stat = "niveau2"
@@ -957,11 +932,11 @@ while boucle == True :
                     game.player.rect.x = 740
                     game.player.rect.y = 380
                     if x >= 586 and x <= 1016 and y >= 420 and y <= 540 :
+                        musique_jeux.stop()
+                        musique_menu.play(-1)
                         stat = "menu"
                     if x >= 586 and x <= 1016 and y >= 270 and y <= 388 :
                         timer = 30
-                        musique_menu.stop()
-                        musique_jeux.play(-1)
                         game.nombre_kill = 0
                         stat = stat_niveau
             elif stat == "fin_jeux_infinity" :
@@ -971,10 +946,10 @@ while boucle == True :
                 game.player.rect.x = 740
                 game.player.rect.y = 380
                 if x >= 586 and x <= 1016 and y >= 420 and y <= 540 :
+                    musique_jeux.stop()
+                    musique_menu.play(-1)
                     stat = "menu"
                 if x >= 586 and x <= 1016 and y >= 270 and y <= 388 :
-                    musique_menu.stop()
-                    musique_jeux.play(-1)
                     game.nombre_kill = 0
                     stat = stat_niveau
 
