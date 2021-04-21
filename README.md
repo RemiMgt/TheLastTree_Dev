@@ -3,7 +3,7 @@ Developpement du projet : TheLastTree
 
 - To START the project :
 
-install python3 
+install python3 /
 install pygame 
 
 and ...
